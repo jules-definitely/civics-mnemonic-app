@@ -74,6 +74,14 @@
     {id:"83",statement:"James Madison, Alexander Hamilton, and John Jay wrote the Federalist Papers, arguing for the Constitution's ratification.",answer:"James Madison (or Alexander Hamilton)",technique:"icon_plain",icon:"scrollQuill",category:"Colonial Period and Independence",entity:"James Madison & Alexander Hamilton"},
     {id:"84",statement:"The Federalist Papers were important because they helped people understand and support the Constitution.",answer:"They helped people understand and support the Constitution",technique:"icon_plain",icon:"scrollQuill",category:"Colonial Period and Independence",entity:"James Madison & Alexander Hamilton"},
     {id:"90",statement:"The United States bought the Louisiana Territory from France in 1803.",answer:"The Louisiana Territory",technique:"numeric_badge",badge_number:"1803",icon:"mapTerritory",category:"1800s",entity:"Thomas Jefferson"},
+    {id:"91",statement:"The War of 1812 was one war fought by the United States in the 1800s.",answer:"War of 1812",technique:"icon_plain",icon:"tricornHat",category:"1800s"},
+    {id:"92",statement:"The Civil War (1861-1865) was fought between the North and the South, and its outcome ended slavery.",answer:"The Civil War",technique:"icon_plain",icon:"swords",category:"1800s"},
+    {id:"93",statement:"The Battle of Gettysburg was an important event of the Civil War.",answer:"Battle of Gettysburg",technique:"icon_plain",icon:"swords",category:"1800s"},
+    {id:"94",statement:"Abraham Lincoln is known for freeing the slaves through the Emancipation Proclamation.",answer:"Freed the slaves (Emancipation Proclamation)",technique:"icon_plain",icon:"scrollQuill",category:"1800s"},
+    {id:"95",statement:"The Emancipation Proclamation freed slaves in the Confederate states.",answer:"Freed slaves in the Confederate states",technique:"icon_plain",icon:"scrollQuill",category:"1800s"},
+    {id:"97",statement:"The 14th Amendment says all persons born or naturalized in the United States are citizens.",answer:"14th Amendment",technique:"numeric_badge",badge_number:"14",category:"1800s"},
+    {id:"98",statement:"The 15th Amendment (1870) gave men of any race the right to vote.",answer:"15th Amendment (1870)",technique:"numeric_badge",badge_number:"15",category:"1800s"},
+    {id:"99",statement:"Susan B. Anthony was a leader of the women's rights movement in the 1800s.",answer:"Susan B. Anthony",technique:"icon_plain",icon:"peopleCircle",category:"1800s"},
     {id:"16",statement:"The three branches of government are legislative, executive, and judicial.",answer:"Legislative, Executive, and Judicial",technique:"icon_plain",icon:"govTree",category:"System of Government"},
     {id:"17",statement:"The President is in charge of the Executive branch.",answer:"Executive branch",technique:"icon_plain",icon:"seal",category:"System of Government"},
     {id:"18",statement:"Congress (the legislative branch) writes laws.",answer:"Congress (the legislative branch)",technique:"icon_plain",icon:"capitol",category:"System of Government"},
@@ -293,6 +301,11 @@
       '<circle cx="24" cy="26" r="7" fill="'+PAL.rust+'"/>' +
       '<circle cx="40" cy="26" r="7" fill="'+PAL.mustard+'"/>' +
       '<circle cx="32" cy="42" r="7" fill="'+PAL.navy+'"/>', 72); },
+    swords: function() { return svgWrap(
+      '<line x1="14" y1="14" x2="50" y2="50" stroke="'+PAL.navy+'" stroke-width="3.5" stroke-linecap="round"/>' +
+      '<line x1="50" y1="14" x2="14" y2="50" stroke="'+PAL.rust+'" stroke-width="3.5" stroke-linecap="round"/>' +
+      '<line x1="10" y1="18" x2="18" y2="10" stroke="'+PAL.navy+'" stroke-width="3" stroke-linecap="round"/>' +
+      '<line x1="54" y1="18" x2="46" y2="10" stroke="'+PAL.rust+'" stroke-width="3" stroke-linecap="round"/>', 72); },
     mapTerritory: function() { return svgWrap(
       '<path d="M10 20 L54 20 L54 44 L34 44 L34 54 L18 54 L18 40 L10 40 Z" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<path d="M10 20 L34 20 L34 44 L18 44 L18 40 L10 40 Z" fill="'+PAL.rust+'" opacity="0.6"/>', 72); }
