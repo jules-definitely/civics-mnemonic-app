@@ -1,0 +1,10 @@
+[
+  {
+    "id": "voices_of_equality",
+    "type": "structural",
+    "title": "Voices of Equality",
+    "member_fact_ids": ["99", "113"],
+    "shared_visual_asset": "Directly recreates the founder's original deck slide, which paired Susan B. Anthony and Martin Luther King, Jr. under one 'Voices of Equality' header.",
+    "merge_rationale": "The first cluster in this project spanning two different official categories — fact 99 is '1800s', fact 113 is 'Recent American History'. Clusters were previously implicit within a single category or within an entity hub; this confirms structural clusters can cross category boundaries too, same as entity clusters already did."
+  }
+]

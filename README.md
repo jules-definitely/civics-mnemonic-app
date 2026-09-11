@@ -16,8 +16,9 @@ listing every accepted variant at once.
 
 ## Status
 
-61 of 128 official questions are fully built and readable in the current
-prototype. This is a working prototype, not a finished product.
+All 128 official questions are built and readable in the prototype.
+This is a complete first pass through the content — visual style and
+interaction details are still being refined.
 
 ## Try it
 
