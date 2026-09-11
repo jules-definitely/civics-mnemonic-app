@@ -112,7 +112,23 @@
     {id:"54",statement:"5 Supreme Court justices are usually needed to decide a case.",answer:"5",technique:"numeric_badge",badge_number:"5",category:"System of Government",cluster:"Supreme Court by the Numbers"},
     {id:"55",statement:"Supreme Court justices serve for life.",answer:"For life",technique:"contrast_pair",contrast:{left:"Senate/House/President",leftSub:"elected, term limits",right:"Supreme Court",rightSub:"appointed, for life"},category:"System of Government",cluster:"Life Tenure vs. Everyone Else"},
     {id:"56",statement:"Supreme Court justices serve for life so they stay independent of political pressure.",answer:"To be independent of politics",technique:"icon_plain",icon:"scale",category:"System of Government"},
-    {id:"57",statement:"The current Chief Justice of the United States is John Roberts.",answer:"John Roberts",technique:"icon_plain",icon:"scale",category:"System of Government"}
+    {id:"57",statement:"The current Chief Justice of the United States is John Roberts.",answer:"John Roberts",technique:"icon_plain",icon:"scale",category:"System of Government"},
+    {id:"31",statement:"A U.S. senator represents the citizens of their entire state.",answer:"Citizens of their state",technique:"contrast_pair",contrast:{left:"Represents",leftSub:"citizens of their state",right:"Elected by",rightSub:"citizens of their state"},category:"System of Government",cluster:"Represents / Elected By: Senate"},
+    {id:"32",statement:"U.S. senators are elected by citizens of their state.",answer:"Citizens of their state",technique:"contrast_pair",contrast:{left:"Represents",leftSub:"citizens of their state",right:"Elected by",rightSub:"citizens of their state"},category:"System of Government",cluster:"Represents / Elected By: Senate"},
+    {id:"33",statement:"A member of the House of Representatives represents citizens in their congressional district.",answer:"Citizens in their district",technique:"contrast_pair",contrast:{left:"Represents",leftSub:"citizens of their district",right:"Elected by",rightSub:"citizens of their district"},category:"System of Government",cluster:"Represents / Elected By: House"},
+    {id:"34",statement:"Members of the House of Representatives are elected by citizens of their congressional district.",answer:"Citizens of their district",technique:"contrast_pair",contrast:{left:"Represents",leftSub:"citizens of their district",right:"Elected by",rightSub:"citizens of their district"},category:"System of Government",cluster:"Represents / Elected By: House"},
+    {id:"35",statement:"Some states have more representatives than others because of population.",answer:"Because of the state's population",technique:"icon_plain",icon:"peopleCircle",category:"System of Government"},
+    {id:"44",statement:"The President vetoes bills.",answer:"The President",technique:"icon_plain",icon:"seal",category:"System of Government",cluster:"Sign It or Veto It"},
+    {id:"58",statement:"Printing paper money is a power that belongs only to the federal government.",answer:"Print paper money",technique:"contrast_pair",contrast:{left:"Federal power",leftSub:"print paper money",right:"State power",rightSub:"give a driver's license"},category:"System of Government",cluster:"Federal Power / State Power"},
+    {id:"59",statement:"Giving a driver's license is a power that belongs only to state governments.",answer:"Give a driver's license",technique:"contrast_pair",contrast:{left:"Federal power",leftSub:"print paper money",right:"State power",rightSub:"give a driver's license"},category:"System of Government",cluster:"Federal Power / State Power"},
+    {id:"60",statement:"The 10th Amendment says powers not given to the federal government belong to the states or the people.",answer:"Powers not given to the federal government belong to the states or the people",technique:"numeric_badge",badge_number:"10th",icon:"scale",category:"System of Government"},
+    {id:"23",statement:"Your U.S. senators depend on which state you live in \u2014 look this up at senate.gov before your interview.",answer:"Varies by state \u2014 look up at senate.gov",technique:"icon_plain",icon:"mapPin",category:"System of Government"},
+    {id:"29",statement:"Your U.S. representative depends on your congressional district \u2014 look this up at house.gov/representatives before your interview.",answer:"Varies by district \u2014 look up at house.gov/representatives",technique:"icon_plain",icon:"mapPin",category:"System of Government"},
+    {id:"61",statement:"Your state's governor depends on which state you live in \u2014 look this up at usa.gov/state-governments before your interview.",answer:"Varies by state \u2014 look up at usa.gov/state-governments",technique:"icon_plain",icon:"mapPin",category:"System of Government"},
+    {id:"62",statement:"Your state's capital depends on which state you live in \u2014 look this up at usa.gov/state-governments before your interview.",answer:"Varies by state \u2014 look up at usa.gov/state-governments",technique:"icon_plain",icon:"mapPin",category:"System of Government"},
+    {id:"30",statement:"The current Speaker of the House of Representatives is Mike Johnson.",answer:"Mike Johnson",technique:"icon_plain",icon:"capitol",category:"System of Government"},
+    {id:"38",statement:"The current President of the United States is Donald Trump.",answer:"Donald Trump",technique:"icon_plain",icon:"seal",category:"System of Government"},
+    {id:"39",statement:"The current Vice President of the United States is JD Vance.",answer:"JD Vance",technique:"icon_plain",icon:"seal",category:"System of Government"}
   ];
 
   var CATEGORY_ORDER = ["Principles of American Government", "Rights and Responsibilities", "Symbols and Holidays", "The Founding Fathers", "Colonial Period and Independence", "1800s", "System of Government", "Recent American History"];
@@ -306,6 +322,15 @@
       '<line x1="50" y1="14" x2="14" y2="50" stroke="'+PAL.rust+'" stroke-width="3.5" stroke-linecap="round"/>' +
       '<line x1="10" y1="18" x2="18" y2="10" stroke="'+PAL.navy+'" stroke-width="3" stroke-linecap="round"/>' +
       '<line x1="54" y1="18" x2="46" y2="10" stroke="'+PAL.rust+'" stroke-width="3" stroke-linecap="round"/>', 72); },
+    idCard: function() { return svgWrap(
+      '<rect x="8" y="18" width="48" height="30" rx="4" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2.5"/>' +
+      '<circle cx="20" cy="33" r="6" fill="'+PAL.mustard+'" stroke="'+PAL.navy+'" stroke-width="1.5"/>' +
+      '<line x1="30" y1="28" x2="50" y2="28" stroke="'+PAL.navy+'" stroke-width="2"/>' +
+      '<line x1="30" y1="34" x2="46" y2="34" stroke="'+PAL.navy+'" stroke-width="1.5"/>' +
+      '<line x1="30" y1="40" x2="42" y2="40" stroke="'+PAL.navy+'" stroke-width="1.5"/>', 72); },
+    mapPin: function() { return svgWrap(
+      '<path d="M32 8 C20 8 12 17 12 28 C12 42 32 58 32 58 C32 58 52 42 52 28 C52 17 44 8 32 8 Z" fill="'+PAL.rust+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
+      '<circle cx="32" cy="27" r="8" fill="'+PAL.cream+'"/>', 72); },
     mapTerritory: function() { return svgWrap(
       '<path d="M10 20 L54 20 L54 44 L34 44 L34 54 L18 54 L18 40 L10 40 Z" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<path d="M10 20 L34 20 L34 44 L18 44 L18 40 L10 40 Z" fill="'+PAL.rust+'" opacity="0.6"/>', 72); }
