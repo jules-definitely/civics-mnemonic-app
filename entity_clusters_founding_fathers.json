@@ -1,0 +1,121 @@
+[
+  {
+    "id": "entity_george_washington",
+    "type": "entity",
+    "title": "George Washington",
+    "core_fact": {
+      "question_id": "86",
+      "text": "George Washington is famous for many things — First President, 'Father of Our Country,' General of the Continental Army.",
+      "category": "The Founding Fathers"
+    },
+    "linked_facts": [
+      {
+        "question_id": "80",
+        "text": "Washington Crossing the Delaware — an accepted answer for 'important events of the American Revolution.'",
+        "category": "Colonial Period and Independence",
+        "link_strength": "primary"
+      },
+      {
+        "question_id": "119",
+        "text": "Washington, D.C. is the capital — literally named after him.",
+        "category": "Geography, Symbols, and Holidays",
+        "link_strength": "secondary/loose"
+      }
+    ],
+    "shared_visual_asset": "Hub figure: stylized Washington silhouette, individual fact-cards branching off (spoke layout)."
+  },
+  {
+    "id": "entity_thomas_jefferson",
+    "type": "entity",
+    "title": "Thomas Jefferson",
+    "core_fact": {
+      "question_id": "87",
+      "text": "Thomas Jefferson is famous for many things — writer of the Declaration of Independence, third President, Louisiana Purchase.",
+      "category": "The Founding Fathers"
+    },
+    "linked_facts": [
+      {
+        "question_id": "78",
+        "text": "Who wrote the Declaration of Independence? Thomas Jefferson.",
+        "category": "Colonial Period and Independence",
+        "link_strength": "primary"
+      },
+      {
+        "question_id": "90",
+        "text": "The Louisiana Territory, bought from France in 1803 — already listed as an accepted alternate answer under fact 87.",
+        "category": "1800s",
+        "link_strength": "primary"
+      }
+    ],
+    "shared_visual_asset": "Hub figure: Jefferson silhouette, spokes to Declaration, Presidency, Louisiana Purchase."
+  },
+  {
+    "id": "entity_james_madison",
+    "type": "entity",
+    "title": "James Madison",
+    "core_fact": {
+      "question_id": "88",
+      "text": "James Madison is famous for many things — 'Father of the Constitution,' fourth President, War of 1812.",
+      "category": "The Founding Fathers"
+    },
+    "linked_facts": [
+      {
+        "question_id": "83",
+        "text": "Federalist Papers writer — Madison is one of three accepted names (with Hamilton and Jay).",
+        "category": "Colonial Period and Independence",
+        "link_strength": "primary"
+      },
+      {
+        "question_id": "84",
+        "text": "Why the Federalist Papers were important — same document, secondary link.",
+        "category": "Colonial Period and Independence",
+        "link_strength": "secondary"
+      }
+    ],
+    "shared_visual_asset": "Hub figure: Madison silhouette, spokes to Constitution and Federalist Papers."
+  },
+  {
+    "id": "entity_alexander_hamilton",
+    "type": "entity",
+    "title": "Alexander Hamilton",
+    "core_fact": {
+      "question_id": "89",
+      "text": "Alexander Hamilton is famous for many things — first Secretary of the Treasury, Federalist Papers author, aide to Washington.",
+      "category": "The Founding Fathers"
+    },
+    "linked_facts": [
+      {
+        "question_id": "83",
+        "text": "Federalist Papers writer — Hamilton is one of three accepted names (with Madison and Jay).",
+        "category": "Colonial Period and Independence",
+        "link_strength": "primary"
+      },
+      {
+        "question_id": "84",
+        "text": "Why the Federalist Papers were important — secondary link.",
+        "category": "Colonial Period and Independence",
+        "link_strength": "secondary"
+      }
+    ],
+    "shared_visual_asset": "Hub figure: Hamilton silhouette, spokes to Treasury and Federalist Papers. Note: this hub overlaps heavily with Madison's — the Federalist Papers fact may render as a shared spoke between both hubs rather than duplicated art."
+  },
+  {
+    "id": "entity_benjamin_franklin",
+    "type": "entity",
+    "title": "Benjamin Franklin",
+    "core_fact": {
+      "question_id": "85",
+      "text": "Benjamin Franklin is famous for many things — inventor, Founding Father, founded the first free public libraries, first Postmaster General.",
+      "category": "The Founding Fathers"
+    },
+    "linked_facts": [
+      {
+        "question_id": "78",
+        "text": "Not the author of the Declaration (that's Jefferson) — Franklin only helped revise it. Not part of the official accepted answer, but useful as a deliberate contrast/'not this person' note given Franklin's deck already flags him as 'NOT A PRESIDENT.'",
+        "category": "Colonial Period and Independence",
+        "link_strength": "soft/contrast-only"
+      }
+    ],
+    "shared_visual_asset": "Hub figure: Franklin silhouette, spokes to invention/libraries/Postmaster General. Pairs naturally with the existing 'Not a President' contrast card style already in the founder's deck."
+  }
+]

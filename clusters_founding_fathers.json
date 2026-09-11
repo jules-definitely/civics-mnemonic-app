@@ -1,0 +1,13 @@
+[
+  {
+    "id": "not_a_president",
+    "type": "structural",
+    "title": "Not a President",
+    "member_fact_ids": [
+      "85",
+      "89"
+    ],
+    "shared_visual_asset": "Two-panel card: 'NOT A PRESIDENT' (Franklin) / 'ALSO NOT A PRESIDENT' (Hamilton) \u2014 the founder's own existing asset.",
+    "merge_rationale": "Confusability \u2014 people commonly assume any prominent Founding-era figure was a President. Notably, this fact also belongs to each person's entity hub simultaneously, confirming a Fact can carry both a structural cluster_id and an entity_tag at once \u2014 the two clustering mechanisms aren't mutually exclusive."
+  }
+]

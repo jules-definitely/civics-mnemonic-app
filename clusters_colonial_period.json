@@ -1,0 +1,10 @@
+[
+  {
+    "id": "colonial_motivations",
+    "type": "structural",
+    "title": "Why they came / why they revolted",
+    "member_fact_ids": ["73", "77"],
+    "shared_visual_asset": "Two-panel contrast card: 'Why they came' (religious freedom, pilgrim hat icon) vs. 'Why they revolted' (taxation without representation, dollar/tax icon).",
+    "merge_rationale": "Structural symmetry, not confusability — both are 'reason' facts about the same broader colonial story, one about arrival and one about later independence. Discovered after both facts were already independently curated as separate icon_plain cards; the pairing was recognized afterward, not planned in advance. Confirms clustering can happen retroactively as a byproduct of curation, not only as an upfront design step."
+  }
+]

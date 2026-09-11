@@ -1,0 +1,18 @@
+[
+  {
+    "id": "flag_facts",
+    "type": "structural",
+    "title": "Flag Facts",
+    "member_fact_ids": ["121", "122"],
+    "shared_visual_asset": "Single flag image with two number badges (13 on stripes, 50 on stars).",
+    "merge_rationale": "Structural symmetry — both facts are counts about the same object (the flag). Well under the 3-4 fact cap."
+  },
+  {
+    "id": "may_vs_november",
+    "type": "structural",
+    "title": "Memorial Day vs. Veterans Day",
+    "member_fact_ids": ["127", "128"],
+    "shared_visual_asset": "Two-panel contrast card, muted/respectful tone given the subject matter.",
+    "merge_rationale": "Confusability-driven — this is one of the most commonly mixed-up pairs on the entire 128-question test. Teaching them side by side fights the confusion directly rather than encoding them separately and hoping they don't blur together."
+  }
+]

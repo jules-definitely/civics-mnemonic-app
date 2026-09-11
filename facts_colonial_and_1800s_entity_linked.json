@@ -1,0 +1,72 @@
+[
+  {
+    "id": "78",
+    "canonical_statement": "Thomas Jefferson wrote the Declaration of Independence.",
+    "linked_questions": ["Who wrote the Declaration of Independence?"],
+    "accepted_answer_variants": ["Thomas Jefferson"],
+    "curated_answer": "Thomas Jefferson",
+    "curation_rationale": "Only accepted answer.",
+    "category": "Colonial Period and Independence",
+    "time_sensitive": false,
+    "sensitivity_flag": false,
+    "mnemonic_technique": "icon_plain",
+    "visual_treatment": "Quill + scroll icon with Jefferson silhouette.",
+    "entity_tags": ["Thomas Jefferson"]
+  },
+  {
+    "id": "80",
+    "canonical_statement": "Washington Crossing the Delaware was an important event of the American Revolution.",
+    "linked_questions": ["The American Revolution had many important events. Name one."],
+    "accepted_answer_variants": ["Battle of Yorktown (British surrender)", "Battle of Bunker Hill", "Declaration of Independence", "Washington Crossing the Delaware"],
+    "curated_answer": "Washington Crossing the Delaware",
+    "curation_rationale": "Chosen specifically to feed the Washington entity hub — a genuinely iconic, easy-to-picture image (based on a famous, long-public-domain 1851 painting), not just the most 'correct' pick.",
+    "category": "Colonial Period and Independence",
+    "time_sensitive": false,
+    "sensitivity_flag": false,
+    "mnemonic_technique": "icon_plain",
+    "visual_treatment": "Original illustrated composition evoking the crossing (boat, ice, flag) — not a direct reproduction of the historical painting.",
+    "entity_tags": ["George Washington"]
+  },
+  {
+    "id": "83",
+    "canonical_statement": "James Madison, Alexander Hamilton, and John Jay wrote the Federalist Papers, arguing for the Constitution's ratification.",
+    "linked_questions": ["The Federalist Papers supported the passage of the U.S. Constitution. Name one writer."],
+    "accepted_answer_variants": ["James Madison", "Alexander Hamilton", "John Jay"],
+    "curated_answer": "James Madison (or Alexander Hamilton)",
+    "curation_rationale": "This fact is a shared spoke between two entity hubs (Madison and Hamilton) rather than pointing to one curated answer. John Jay is accepted but not entity-tracked — a single appearance doesn't meet the 'recurring across categories' bar for building him a hub.",
+    "category": "Colonial Period and Independence",
+    "time_sensitive": false,
+    "sensitivity_flag": false,
+    "mnemonic_technique": "icon_plain",
+    "visual_treatment": "Quill + newspaper masthead reading 'THE FEDERALIST'.",
+    "entity_tags": ["James Madison", "Alexander Hamilton"]
+  },
+  {
+    "id": "84",
+    "canonical_statement": "The Federalist Papers were important because they helped people understand and support the Constitution.",
+    "linked_questions": ["Why were the Federalist Papers important?"],
+    "accepted_answer_variants": ["They helped people understand and support the Constitution"],
+    "curated_answer": "They helped people understand and support the Constitution",
+    "curation_rationale": "Only accepted answer.",
+    "category": "Colonial Period and Independence",
+    "time_sensitive": false,
+    "sensitivity_flag": false,
+    "mnemonic_technique": "icon_plain",
+    "visual_treatment": "Same newspaper masthead asset as fact 83, secondary card.",
+    "entity_tags": ["James Madison", "Alexander Hamilton"]
+  },
+  {
+    "id": "90",
+    "canonical_statement": "The United States bought the Louisiana Territory from France in 1803.",
+    "linked_questions": ["What territory did the United States buy from France in 1803?"],
+    "accepted_answer_variants": ["The Louisiana Territory", "Louisiana Territory", "Louisiana"],
+    "curated_answer": "The Louisiana Territory",
+    "curation_rationale": "Only real accepted answer. Kept separate from fact 87 (Jefferson's entity hub fact) after catching that both were about to teach the same content — see fact 87's rationale.",
+    "category": "1800s",
+    "time_sensitive": false,
+    "sensitivity_flag": false,
+    "mnemonic_technique": "numeric_badge",
+    "visual_treatment": "Map silhouette of the purchased territory + '1803' badge.",
+    "entity_tags": ["Thomas Jefferson"]
+  }
+]
