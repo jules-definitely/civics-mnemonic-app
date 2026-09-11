@@ -20,6 +20,20 @@
 <script>
 (function() {
   var facts = [
+    {id:"1",statement:"The United States has a republic form of government.",answer:"Republic",technique:"icon_plain",icon:"capitol",category:"Principles of American Government"},
+    {id:"2",statement:"The Constitution is the supreme law of the land.",answer:"The Constitution",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government"},
+    {id:"3",statement:"The Constitution defines the powers of government.",answer:"Defines the powers of government",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government"},
+    {id:"4",statement:"\"We the People\" means the government's power comes from the people governing themselves.",answer:"Self-government",technique:"icon_plain",icon:"peopleCircle",category:"Principles of American Government"},
+    {id:"5",statement:"The Constitution is changed through amendments.",answer:"Amendments (the amendment process)",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government"},
+    {id:"6",statement:"The Bill of Rights protects the basic rights of people living in the United States.",answer:"The basic rights of people living in the United States",technique:"icon_plain",icon:"scale",category:"Principles of American Government"},
+    {id:"7",statement:"The U.S. Constitution has 27 amendments.",answer:"27",technique:"numeric_badge",badge_number:"27",category:"Principles of American Government"},
+    {id:"8",statement:"The Declaration of Independence is important because it says all people are created equal.",answer:"It says all people are created equal",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government"},
+    {id:"9",statement:"The Declaration of Independence said the American colonies were free from Britain, and includes the words \"Life, Liberty, and the pursuit of Happiness.\"",answer:"Declaration of Independence",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government"},
+    {id:"10",statement:"Liberty and equality are two important ideas in the Declaration of Independence and the Constitution.",answer:"Liberty and Equality",technique:"icon_plain",icon:"scale",category:"Principles of American Government"},
+    {id:"12",statement:"The economic system of the United States is capitalism (a free market economy).",answer:"Capitalism (free market economy)",technique:"icon_plain",icon:"dollarBill",category:"Principles of American Government"},
+    {id:"13",statement:"The rule of law means no one is above the law.",answer:"No one is above the law",technique:"icon_plain",icon:"scale",category:"Principles of American Government"},
+    {id:"14",statement:"The Federalist Papers were one of many documents that influenced the U.S. Constitution.",answer:"The Federalist Papers",technique:"icon_plain",icon:"scrollQuill",category:"Principles of American Government",entity:"James Madison & Alexander Hamilton"},
+    {id:"15",statement:"There are three branches of government so that no one part becomes too powerful \u2014 checks and balances.",answer:"Checks and balances",technique:"icon_plain",icon:"scale",category:"Principles of American Government"},
     {id:"117",statement:"Cherokee is a federally recognized American Indian tribe.",answer:"Cherokee",technique:"icon_plain",icon:"feather",category:"Recent American History"},
     {id:"118",statement:"The light bulb is an example of American innovation.",answer:"Light bulb",technique:"icon_plain",icon:"bulb",category:"Recent American History"},
     {id:"119",statement:"Washington, D.C. is the capital of the United States.",answer:"Washington, D.C.",technique:"icon_plain",icon:"capitol",category:"Symbols and Holidays"},
@@ -83,9 +97,9 @@
     {id:"57",statement:"The current Chief Justice of the United States is John Roberts.",answer:"John Roberts",technique:"icon_plain",icon:"scale",category:"System of Government"}
   ];
 
-  var CATEGORY_ORDER = ["Symbols and Holidays", "The Founding Fathers", "Colonial Period and Independence", "1800s", "System of Government", "Recent American History"];
+  var CATEGORY_ORDER = ["Principles of American Government", "Symbols and Holidays", "The Founding Fathers", "Colonial Period and Independence", "1800s", "System of Government", "Recent American History"];
   var STREAK_KEY = "book_streak_v1";
-  var state = { screen: "cover", pages: [], pageIndex: 0, coverOn: false, revealed: false, streak: 0 };
+  var state = { screen: "cover", pages: [], pageIndex: 0, coverOn: false, revealed: false, streak: 0, dismissed: {} };
 
   function shuffle(arr) {
     var a = arr.slice();
@@ -99,7 +113,7 @@
   function buildPages() {
     var pages = [];
     CATEGORY_ORDER.forEach(function(cat) {
-      var inCat = facts.filter(function(f) { return f.category === cat; });
+      var inCat = facts.filter(function(f) { return f.category === cat && !state.dismissed[f.id]; });
       pages = pages.concat(shuffle(inCat));
     });
     return pages;
@@ -108,22 +122,41 @@
   function todayISO() { return new Date().toISOString().slice(0,10); }
   function daysBetween(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
+  function saveProgress() {
+    window.storage.set(STREAK_KEY, JSON.stringify({ last_opened: state._lastOpened, streak: state.streak, dismissed: state.dismissed }), false).catch(function(){});
+  }
+
   function loadStreak() {
     window.storage.get(STREAK_KEY, false).then(function(res) {
-      var data = { last_opened: null, streak: 0 };
+      var data = { last_opened: null, streak: 0, dismissed: {} };
       if (res && res.value) { try { data = JSON.parse(res.value); } catch(e) {} }
+      state.dismissed = data.dismissed || {};
       var today = todayISO();
       if (data.last_opened === today) {
         state.streak = data.streak;
+        state._lastOpened = data.last_opened;
       } else if (data.last_opened && daysBetween(data.last_opened, today) === 1) {
         state.streak = data.streak + 1;
-        window.storage.set(STREAK_KEY, JSON.stringify({ last_opened: today, streak: state.streak }), false).catch(function(){});
+        state._lastOpened = today;
+        saveProgress();
       } else {
         state.streak = 1;
-        window.storage.set(STREAK_KEY, JSON.stringify({ last_opened: today, streak: 1 }), false).catch(function(){});
+        state._lastOpened = today;
+        saveProgress();
       }
       render();
-    }).catch(function() { state.streak = 1; render(); });
+    }).catch(function() { state.streak = 1; state._lastOpened = todayISO(); render(); });
+  }
+
+  function dismissFact(factId) {
+    state.dismissed[factId] = true;
+    saveProgress();
+  }
+
+  function restoreFact(factId) {
+    delete state.dismissed[factId];
+    saveProgress();
+    render();
   }
 
   function esc(s) { var d = document.createElement("div"); d.innerText = s; return d.innerHTML; }
@@ -246,6 +279,10 @@
       '<path d="M14 18 L8 32 L20 32 Z" fill="none" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<path d="M50 18 L44 32 L56 32 Z" fill="none" stroke="'+PAL.mustard+'" stroke-width="2"/>' +
       '<rect x="22" y="46" width="20" height="6" fill="'+PAL.navy+'" rx="1"/>', 72); },
+    peopleCircle: function() { return svgWrap(
+      '<circle cx="24" cy="26" r="7" fill="'+PAL.rust+'"/>' +
+      '<circle cx="40" cy="26" r="7" fill="'+PAL.mustard+'"/>' +
+      '<circle cx="32" cy="42" r="7" fill="'+PAL.navy+'"/>', 72); },
     mapTerritory: function() { return svgWrap(
       '<path d="M10 20 L54 20 L54 44 L34 44 L34 54 L18 54 L18 40 L10 40 Z" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<path d="M10 20 L34 20 L34 44 L18 44 L18 40 L10 40 Z" fill="'+PAL.rust+'" opacity="0.6"/>', 72); }
@@ -320,7 +357,7 @@
       if (idx >= 0) state.pageIndex = idx;
     }
     state.revealed = false;
-    state.screen = "reading";
+    state.screen = state.pages.length ? "reading" : "all_dismissed";
     render();
   }
 
@@ -336,9 +373,12 @@
     if (state.screen === "cover") {
       var counts = {};
       facts.forEach(function(f) { counts[f.category] = (counts[f.category]||0) + 1; });
+      var dismissedCount = Object.keys(state.dismissed).length;
       var chapters = CATEGORY_ORDER.map(function(cat, i) {
+        var activeInCat = facts.filter(function(f) { return f.category === cat && !state.dismissed[f.id]; }).length;
+        var label = activeInCat < counts[cat] ? (activeInCat + ' active / ' + counts[cat] + ' total') : (counts[cat] + ' facts');
         return '<div class="cvb-chapter-link" data-cat="'+esc(cat)+'">' +
-          '<span>'+(i+1)+'. '+esc(cat)+'</span><span style="color:#5a4d3c;">'+counts[cat]+' facts</span></div>';
+          '<span>'+(i+1)+'. '+esc(cat)+'</span><span style="color:#5a4d3c;">'+label+'</span></div>';
       }).join("");
       root.innerHTML =
         '<div style="text-align:center;padding:12px 0 20px;">' +
@@ -348,10 +388,52 @@
         '</div>' +
         '<div style="background:#fff;border-radius:8px;padding:8px 16px;border:1px solid #ddd0b8;">'+chapters+'</div>' +
         '<div style="font-size:12px;color:#5a4d3c;text-align:center;margin-top:6px;">tap a chapter to jump there, or start from the beginning</div>' +
-        '<button class="cvb-btn" id="cvb-open" style="width:100%;background:#B3402E;color:#F2E9D8;padding:16px;font-size:16px;margin-top:14px;">Open the book</button>';
+        '<button class="cvb-btn" id="cvb-open" style="width:100%;background:#B3402E;color:#F2E9D8;padding:16px;font-size:16px;margin-top:14px;">Open the book</button>' +
+        (dismissedCount ? '<button class="cvb-btn" id="cvb-manage" style="width:100%;background:#fff;color:#5a4d3c;border:1px solid #ddd0b8;padding:10px;font-size:13px;margin-top:8px;">'+dismissedCount+' fact'+(dismissedCount===1?'':'s')+' marked as known &mdash; manage</button>' : '');
       document.getElementById("cvb-open").onclick = function() { openBook(); };
       Array.prototype.forEach.call(document.querySelectorAll(".cvb-chapter-link"), function(el) {
         el.onclick = function() { openBook(el.getAttribute("data-cat")); };
+      });
+      var manageBtn = document.getElementById("cvb-manage");
+      if (manageBtn) manageBtn.onclick = function() { state.screen = "manage"; render(); };
+      return;
+    }
+
+    if (state.screen === "all_dismissed") {
+      root.innerHTML =
+        '<div style="text-align:center;padding:32px 0;">' +
+        '<h2 style="color:#1F3A52;">You know every fact in this chapter</h2>' +
+        '<p style="font-size:14px;color:#5a4d3c;">Restore some from Manage if you want to review them again.</p>' +
+        '<button class="cvb-btn" id="cvb-home" style="background:#1F3A52;color:#F2E9D8;margin-top:12px;">Back to overview</button></div>';
+      document.getElementById("cvb-home").onclick = function() { state.screen = "cover"; render(); };
+      return;
+    }
+
+    if (state.screen === "manage") {
+      var byCat = {};
+      Object.keys(state.dismissed).forEach(function(id) {
+        var f = facts.find(function(x) { return x.id === id; });
+        if (!f) return;
+        (byCat[f.category] = byCat[f.category] || []).push(f);
+      });
+      var rows = "";
+      CATEGORY_ORDER.forEach(function(cat) {
+        if (!byCat[cat]) return;
+        rows += '<div style="font-size:12px;letter-spacing:0.06em;color:#B3402E;margin:14px 0 4px;">'+esc(cat.toUpperCase())+'</div>';
+        byCat[cat].forEach(function(f) {
+          rows += '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #eee2c8;">' +
+            '<span style="font-size:13px;">'+esc(f.statement)+'</span>' +
+            '<button class="cvb-btn cvb-restore" data-id="'+esc(f.id)+'" style="background:#eee;color:#2b2118;font-size:11px;padding:6px 10px;white-space:nowrap;">put back</button></div>';
+        });
+      });
+      if (!rows) rows = '<p style="font-size:14px;color:#5a4d3c;text-align:center;">Nothing marked as known yet.</p>';
+      root.innerHTML =
+        '<h2 style="color:#1F3A52;font-size:20px;">Facts you\'ve marked as known</h2>' +
+        '<div style="background:#fff;border-radius:8px;padding:8px 16px;border:1px solid #ddd0b8;">'+rows+'</div>' +
+        '<button class="cvb-btn" id="cvb-home" style="width:100%;background:#1F3A52;color:#F2E9D8;margin-top:14px;">Back to overview</button>';
+      document.getElementById("cvb-home").onclick = function() { state.screen = "cover"; render(); };
+      Array.prototype.forEach.call(document.querySelectorAll(".cvb-restore"), function(btn) {
+        btn.onclick = function() { restoreFact(btn.getAttribute("data-id")); };
       });
       return;
     }
@@ -389,7 +471,8 @@
       '<button class="cvb-btn" id="cvb-prev" style="flex:1;background:#eee;color:#2b2118;" '+(state.pageIndex===0?'disabled':'')+'>&#8592; Previous</button>' +
       '<button class="cvb-btn" id="cvb-cover" style="background:#1F3A52;color:#F2E9D8;">Cover</button>' +
       '<button class="cvb-btn" id="cvb-next" style="flex:1;background:#B3402E;color:#F2E9D8;" '+(state.pageIndex===state.pages.length-1?'disabled':'')+'>Next &#8594;</button>' +
-      '</div>';
+      '</div>' +
+      '<button class="cvb-btn" id="cvb-dismiss" style="width:100%;background:none;color:#5a4d3c;font-size:12px;margin-top:8px;text-decoration:underline;">&#10003; I know this \u2014 remove from rotation</button>';
 
     root.innerHTML = html;
     document.getElementById("cvb-prev").onclick = function(e) { e.stopPropagation(); goTo(-1); };
@@ -397,6 +480,11 @@
     document.getElementById("cvb-cover").onclick = function(e) { e.stopPropagation(); state.screen = "cover"; render(); };
     document.getElementById("cvb-cover-toggle").onclick = function(e) { e.stopPropagation(); state.coverOn = !state.coverOn; state.revealed = false; render(); };
     document.getElementById("cvb-jump").onchange = function(e) { openBook(e.target.value); };
+    document.getElementById("cvb-dismiss").onclick = function(e) {
+      e.stopPropagation();
+      dismissFact(fact.id);
+      if (state.pageIndex < state.pages.length - 1) { goTo(1); } else { state.screen = "cover"; render(); }
+    };
     var revealBtn = document.getElementById("cvb-reveal");
     if (revealBtn) revealBtn.onclick = function(e) { e.stopPropagation(); state.revealed = true; render(); };
     document.getElementById("cvb-card").onclick = function() {
