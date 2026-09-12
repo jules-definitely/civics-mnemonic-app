@@ -82,7 +82,7 @@
     {id:"73",q:"The colonists came to America for many reasons. Name one.",statement:"Colonists came to America seeking religious freedom, among other reasons.",answer:"Religious freedom",technique:"contrast_pair",contrast:{left:"Why they came",leftSub:"Religious freedom",right:"Why they revolted",rightSub:"Taxation without representation",leftIcon:"pilgrimHat",rightIcon:"dollarBill"},category:"Colonial Period and Independence",cluster:"Colonial Motivations"},
     {id:"77",q:"Name one reason why the Americans declared independence from Britain.",statement:"Colonists declared independence over taxation without representation, among other reasons.",answer:"Taxation without representation",technique:"contrast_pair",contrast:{left:"Why they came",leftSub:"Religious freedom",right:"Why they revolted",rightSub:"Taxation without representation",leftIcon:"pilgrimHat",rightIcon:"dollarBill"},category:"Colonial Period and Independence",cluster:"Colonial Motivations"},
     {id:"74",q:"Who lived in America before the Europeans arrived?",statement:"American Indians (Native Americans) lived in America before Europeans arrived.",answer:"American Indians / Native Americans",technique:"icon_plain",icon:"feather",category:"Colonial Period and Independence"},
-    {id:"75",q:"What group of people was taken and sold as slaves?",statement:"Africans (people from Africa) were taken and sold as slaves.",answer:"Africans (people from Africa)",technique:"icon_plain",icon:null,category:"Colonial Period and Independence"},
+    {id:"75",q:"What group of people was taken and sold as slaves?",statement:"Africans (people from Africa) were taken and sold as slaves.",answer:"Africans (people from Africa)",technique:"icon_plain",icon:"continentAfrica",category:"Colonial Period and Independence"},
     {id:"76",q:"What war did the Americans fight to win independence from Britain?",statement:"The American Revolution was fought to win independence from Britain.",answer:"The American Revolution",technique:"icon_plain",icon:"tricornHat",category:"Colonial Period and Independence"},
     {id:"79",q:"When was the Declaration of Independence adopted?",statement:"The Declaration of Independence was adopted on July 4, 1776.",answer:"July 4, 1776",technique:"numeric_badge",badge_number:"7/4/1776",icon:"burst",category:"Colonial Period and Independence"},
     {id:"81",q:"There were 13 original states. Name five.",statement:"Five of the 13 original states were New York, New Jersey, New Hampshire, Massachusetts, and Virginia.",answer:"New York, New Jersey, New Hampshire, Massachusetts, Virginia",technique:"pattern_grouping",pattern_items:["New York","New Jersey","New Hampshire","Massachusetts","Virginia"],pattern_highlight:"New",category:"Colonial Period and Independence"},
@@ -260,7 +260,7 @@
       return svgWrap(s + '<rect x="10" y="10" width="44" height="40" fill="none" stroke="'+PAL.navy+'" stroke-width="2"/>', 72); },
     halfMastFlag: function() { return svgWrap(
       '<line x1="16" y1="6" x2="16" y2="58" stroke="'+PAL.gray+'" stroke-width="2.5"/>' +
-      '<rect x="16" y="30" width="30" height="18" fill="'+PAL.navy+'" opacity="0.55"/>' +
+      '<rect x="16" y="30" width="30" height="18" fill="'+PAL.cream+'" opacity="0.7"/>' +
       '<rect x="16" y="30" width="30" height="18" fill="none" stroke="'+PAL.gray+'" stroke-width="1.5"/>', 72); },
     ribbon: function() { return svgWrap(
       '<circle cx="32" cy="22" r="13" fill="'+PAL.mustard+'" stroke="'+PAL.navy+'" stroke-width="2.5"/>' +
@@ -275,16 +275,16 @@
       '<line x1="10" y1="10" x2="54" y2="54" stroke="'+PAL.rust+'" stroke-width="4" stroke-linecap="round"/>' +
       '<line x1="54" y1="10" x2="10" y2="54" stroke="'+PAL.rust+'" stroke-width="4" stroke-linecap="round"/>', 72); },
     books: function() { return svgWrap(
-      '<rect x="10" y="42" width="44" height="8" fill="'+PAL.navy+'" rx="1"/>' +
-      '<rect x="13" y="32" width="38" height="8" fill="'+PAL.rust+'" rx="1"/>' +
-      '<rect x="10" y="22" width="30" height="8" fill="'+PAL.mustard+'" rx="1"/>', 72); },
+      '<rect x="10" y="42" width="44" height="8" fill="'+PAL.rust+'" stroke="'+PAL.navy+'" stroke-width="1" rx="1"/>' +
+      '<rect x="13" y="32" width="38" height="8" fill="'+PAL.mustard+'" stroke="'+PAL.navy+'" stroke-width="1" rx="1"/>' +
+      '<rect x="10" y="22" width="30" height="8" fill="'+PAL.rust+'" stroke="'+PAL.navy+'" stroke-width="1" rx="1"/>', 72); },
     dollarBill: function() { return svgWrap(
       '<rect x="8" y="20" width="48" height="26" rx="3" fill="'+PAL.mustard+'" stroke="'+PAL.navy+'" stroke-width="2.5"/>' +
       '<circle cx="32" cy="33" r="9" fill="none" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<text x="32" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="'+PAL.navy+'">$</text>', 72); },
     tricornHat: function() { return svgWrap(
       '<path d="M10 34 Q32 18 54 34 Q46 30 32 38 Q18 30 10 34 Z" fill="'+PAL.navy+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
-      '<circle cx="32" cy="30" r="3" fill="'+PAL.mustard+'"/>', 72); },
+      '<circle cx="32" cy="30" r="3" fill="'+PAL.rust+'"/>', 72); },
     globeQuill: function() { return svgWrap(
       '<circle cx="30" cy="38" r="14" fill="none" stroke="'+PAL.navy+'" stroke-width="2.5"/>' +
       '<ellipse cx="30" cy="38" rx="6" ry="14" fill="none" stroke="'+PAL.navy+'" stroke-width="1.5"/>' +
@@ -306,8 +306,8 @@
     flag_stripes: function() { return ICONS.flag('stripes'); },
     flag_stars: function() { return ICONS.flag('stars'); },
     pilgrimHat: function() { return svgWrap(
-      '<path d="M18 40 Q18 20 32 16 Q46 20 46 40 Z" fill="'+PAL.navy+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
-      '<ellipse cx="32" cy="40" rx="24" ry="6" fill="'+PAL.navy+'"/>' +
+      '<path d="M18 40 Q18 20 32 16 Q46 20 46 40 Z" fill="'+PAL.cream+'" stroke="'+PAL.cream+'" stroke-width="2"/>' +
+      '<ellipse cx="32" cy="40" rx="24" ry="6" fill="'+PAL.cream+'"/>' +
       '<rect x="24" y="30" width="16" height="8" fill="'+PAL.mustard+'"/>' +
       '<rect x="29" y="30" width="6" height="8" fill="'+PAL.navy+'"/>', 72); },
     govTree: function() { return svgWrap(
@@ -351,6 +351,8 @@
     mapPin: function() { return svgWrap(
       '<path d="M32 8 C20 8 12 17 12 28 C12 42 32 58 32 58 C32 58 52 42 52 28 C52 17 44 8 32 8 Z" fill="'+PAL.rust+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<circle cx="32" cy="27" r="8" fill="'+PAL.cream+'"/>', 72); },
+    continentAfrica: function() { return svgWrap(
+      '<path d="M26 8 C34 6 42 10 44 18 C47 26 46 32 50 38 C53 44 50 50 45 52 C42 54 42 58 38 62 C34 58 32 52 30 46 C27 40 22 36 22 28 C22 20 20 12 26 8 Z" fill="'+PAL.navy+'"/>', 72); },
     mapTerritory: function() { return svgWrap(
       '<path d="M10 20 L54 20 L54 44 L34 44 L34 54 L18 54 L18 40 L10 40 Z" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<path d="M10 20 L34 20 L34 44 L18 44 L18 40 L10 40 Z" fill="'+PAL.rust+'" opacity="0.6"/>', 72); }
