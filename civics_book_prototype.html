@@ -72,8 +72,8 @@
     {id:"126",q:"Name three national U.S. holidays.",statement:"Independence Day, Thanksgiving, and Memorial Day are national U.S. holidays.",answer:"Independence Day, Thanksgiving, Memorial Day",technique:"icon_set",category:"Symbols and Holidays"},
     {id:"127",q:"What is Memorial Day?",statement:"Memorial Day honors U.S. military members who died in service.",answer:"Honors soldiers who died in service",technique:"contrast_pair",contrast:{left:"Memorial Day",leftSub:"honors the dead",right:"Veterans Day",rightSub:"honors all who served",leftIcon:"halfMastFlag",rightIcon:"ribbon"},category:"Symbols and Holidays",cluster:"Memorial vs. Veterans Day"},
     {id:"128",q:"What is Veterans Day?",statement:"Veterans Day honors all who have served in the U.S. military, living or dead.",answer:"Honors all who served, living or dead",technique:"contrast_pair",contrast:{left:"Memorial Day",leftSub:"honors the dead",right:"Veterans Day",rightSub:"honors all who served",leftIcon:"halfMastFlag",rightIcon:"ribbon"},category:"Symbols and Holidays",cluster:"Memorial vs. Veterans Day"},
-    {id:"85",q:"Benjamin Franklin is famous for many things. Name one.",statement:"Benjamin Franklin founded the first free public libraries.",answer:"Founded the first free public libraries",technique:"contrast_pair",contrast:{left:"NOT a president",leftSub:"Benjamin Franklin",right:"ALSO not a president",rightSub:"Alexander Hamilton",leftIcon:"crownX",rightIcon:"crownX"},category:"The Founding Fathers",cluster:"Not a President",entity:"Benjamin Franklin"},
-    {id:"86",q:"George Washington is famous for many things. Name one.",statement:"George Washington was the first President of the United States \u2014 the \u201cFather of Our Country.\u201d",answer:"First President of the United States",technique:"tune_parody",lyric:"\u201cGeorge, George, George Washington \u2014 first pre-si-den-cy\u2026\u201d (set to a tune you already know)",category:"The Founding Fathers",entity:"George Washington"},
+    {id:"85",q:"Benjamin Franklin is famous for many things. Name one.",statement:"Benjamin Franklin founded the first free public libraries.",answer:"Founded the first free public libraries",technique:"contrast_pair",contrast:{left:"NOT a president",leftSub:"Benjamin Franklin",right:"ALSO not a president",rightSub:"Alexander Hamilton",leftIcon:"books",rightIcon:"dollarBill"},category:"The Founding Fathers",cluster:"Not a President",entity:"Benjamin Franklin"},
+    {id:"86",q:"George Washington is famous for many things. Name one.",statement:"George Washington was the first President of the United States \u2014 the \u201cFather of Our Country.\u201d",answer:"First President of the United States",technique:"tune_parody",lyric:"\u201cGeorge, George, George Washington \u2014 first pre-si-den-cy\u2026\u201d (sing to the tune of George of the Jungle)",category:"The Founding Fathers",entity:"George Washington"},
     {id:"87",q:"Thomas Jefferson is famous for many things. Name one.",statement:"Thomas Jefferson was the first Secretary of State.",answer:"First Secretary of State",technique:"icon_plain",icon:"globeQuill",category:"The Founding Fathers",entity:"Thomas Jefferson"},
     {id:"88",q:"James Madison is famous for many things. Name one.",statement:"James Madison is known as the \u201cFather of the Constitution.\u201d",answer:"Father of the Constitution",technique:"icon_plain",icon:"scrollQuill",category:"The Founding Fathers",entity:"James Madison"},
     {id:"89",q:"Alexander Hamilton is famous for many things. Name one.",statement:"Alexander Hamilton was the first Secretary of the Treasury.",answer:"First Secretary of the Treasury",technique:"contrast_pair",contrast:{left:"NOT a president",leftSub:"Benjamin Franklin",right:"ALSO not a president",rightSub:"Alexander Hamilton",leftIcon:"books",rightIcon:"dollarBill"},category:"The Founding Fathers",cluster:"Not a President",entity:"Alexander Hamilton"},
@@ -393,7 +393,7 @@
         '</div></div>';
     }
     if (fact.technique === "tune_parody") {
-      return '<div style="text-align:center;padding:18px 12px;background:'+navy+';color:'+cream+';border-radius:8px;">' +
+      return '<div style="text-align:center;padding:18px 12px;background:'+colorB+';color:'+navy+';border-radius:8px;">' +
         ICONS.tricornHat() +
         '<div style="font-family:\'Source Sans 3\',sans-serif;font-style:italic;font-size:14px;margin-top:6px;">'+esc(fact.lyric)+'</div></div>';
     }
@@ -538,7 +538,7 @@
 
     html += '<div style="display:flex;gap:8px;margin-top:16px;">' +
       '<button class="cvb-btn" id="cvb-prev" style="flex:1;background:#eee;color:#2b2118;" '+(state.pageIndex===0?'disabled':'')+'>&#8592; Previous</button>' +
-      '<button class="cvb-btn" id="cvb-cover" style="background:#1F3A52;color:#F2E9D8;">Cover</button>' +
+      '<button class="cvb-btn" id="cvb-cover" style="background:#1F3A52;color:#F2E9D8;">Home</button>' +
       '<button class="cvb-btn" id="cvb-next" style="flex:1;background:#B3402E;color:#F2E9D8;" '+(state.pageIndex===state.pages.length-1?'disabled':'')+'>Next &#8594;</button>' +
       '</div>' +
       '<button class="cvb-btn" id="cvb-dismiss" style="width:100%;background:none;color:#5a4d3c;font-size:12px;margin-top:8px;text-decoration:underline;">&#10003; I know this \u2014 remove from rotation</button>';
