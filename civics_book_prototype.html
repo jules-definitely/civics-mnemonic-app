@@ -173,29 +173,32 @@
   function daysBetween(a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); }
 
   function saveProgress() {
-    window.storage.set(STREAK_KEY, JSON.stringify({ last_opened: state._lastOpened, streak: state.streak, dismissed: state.dismissed }), false).catch(function(){});
+    try {
+      localStorage.setItem(STREAK_KEY, JSON.stringify({ last_opened: state._lastOpened, streak: state.streak, dismissed: state.dismissed }));
+    } catch (e) { /* localStorage unavailable (e.g. private browsing) — progress just won't persist */ }
   }
 
   function loadStreak() {
-    window.storage.get(STREAK_KEY, false).then(function(res) {
-      var data = { last_opened: null, streak: 0, dismissed: {} };
-      if (res && res.value) { try { data = JSON.parse(res.value); } catch(e) {} }
-      state.dismissed = data.dismissed || {};
-      var today = todayISO();
-      if (data.last_opened === today) {
-        state.streak = data.streak;
-        state._lastOpened = data.last_opened;
-      } else if (data.last_opened && daysBetween(data.last_opened, today) === 1) {
-        state.streak = data.streak + 1;
-        state._lastOpened = today;
-        saveProgress();
-      } else {
-        state.streak = 1;
-        state._lastOpened = today;
-        saveProgress();
-      }
-      render();
-    }).catch(function() { state.streak = 1; state._lastOpened = todayISO(); render(); });
+    var data = { last_opened: null, streak: 0, dismissed: {} };
+    try {
+      var raw = localStorage.getItem(STREAK_KEY);
+      if (raw) { data = JSON.parse(raw); }
+    } catch (e) { /* localStorage unavailable — start fresh each visit */ }
+    state.dismissed = data.dismissed || {};
+    var today = todayISO();
+    if (data.last_opened === today) {
+      state.streak = data.streak;
+      state._lastOpened = data.last_opened;
+    } else if (data.last_opened && daysBetween(data.last_opened, today) === 1) {
+      state.streak = data.streak + 1;
+      state._lastOpened = today;
+      saveProgress();
+    } else {
+      state.streak = 1;
+      state._lastOpened = today;
+      saveProgress();
+    }
+    render();
   }
 
   function dismissFact(factId) {
