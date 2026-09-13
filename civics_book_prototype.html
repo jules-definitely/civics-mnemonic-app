@@ -36,7 +36,7 @@
     {id:"15",q:"There are three branches of government. Why?",statement:"There are three branches of government so that no one part becomes too powerful \u2014 checks and balances.",answer:"Checks and balances",technique:"icon_plain",icon:"scale",category:"Principles of American Government"},
     {id:"63",q:"There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",statement:"The 26th Amendment says citizens 18 and older can vote \u2014 one of four voting-rights amendments.",answer:"Citizens 18 and older can vote",technique:"numeric_badge",badge_number:"18+",category:"Rights and Responsibilities"},
     {id:"64",q:"Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",statement:"Only U.S. citizens can vote in federal elections, run for federal office, and serve on a jury.",answer:"Citizens",technique:"icon_plain",icon:"peopleCircle",category:"Rights and Responsibilities"},
-    {id:"65",q:"What are three rights of everyone living in the United States?",statement:"Freedom of speech, freedom of religion, and the right to bear arms are three rights of everyone living in the United States.",answer:"Freedom of speech, freedom of religion, the right to bear arms",technique:"icon_set",category:"Rights and Responsibilities"},
+    {id:"65",q:"What are three rights of everyone living in the United States?",statement:"Freedom of speech, freedom of religion, and the right to bear arms are three rights of everyone living in the United States.",answer:"Freedom of speech, freedom of religion, the right to bear arms",technique:"icon_set",icons:["speechBubble","openBook","bearFlex"],category:"Rights and Responsibilities"},
     {id:"66",q:"What do we show loyalty to when we say the Pledge of Allegiance?",statement:"The Pledge of Allegiance shows loyalty to the United States and the flag.",answer:"The United States and the flag",technique:"icon_plain",icon:"flag_stars",category:"Rights and Responsibilities"},
     {id:"67",q:"Name two promises that new citizens make in the Oath of Allegiance.",statement:"New citizens promise to defend the Constitution and obey the laws of the United States.",answer:"Defend the Constitution and obey the laws",technique:"icon_plain",icon:"scale",category:"Rights and Responsibilities"},
     {id:"68",q:"How can people become United States citizens?",statement:"People can become U.S. citizens by being born in the U.S., naturalizing, or deriving citizenship through parents.",answer:"Naturalize",technique:"icon_plain",icon:"seal",category:"Rights and Responsibilities"},
@@ -69,7 +69,7 @@
     {id:"123",q:"What is the name of the national anthem?",statement:"The Star-Spangled Banner is the national anthem.",answer:"The Star-Spangled Banner",technique:"contrast_pair",contrast:{left:"IS the anthem",leftSub:"Star-Spangled Banner",right:"NOT the anthem",rightSub:"God Bless America",leftIcon:null,rightIcon:null},category:"Symbols and Holidays"},
     {id:"124",q:"The Nation's first motto was 'E Pluribus Unum.' What does that mean?",statement:"\u201cE Pluribus Unum\u201d means \u201cOut of many, one.\u201d",answer:"Out of many, one",technique:"translation_metaphor",category:"Symbols and Holidays"},
     {id:"125",q:"What is Independence Day?",statement:"Independence Day (July 4) celebrates U.S. independence from Britain.",answer:"Holiday celebrating independence from Britain",technique:"numeric_badge",badge_number:"7/4",icon:"burst",category:"Symbols and Holidays"},
-    {id:"126",q:"Name three national U.S. holidays.",statement:"Independence Day, Thanksgiving, and Memorial Day are national U.S. holidays.",answer:"Independence Day, Thanksgiving, Memorial Day",technique:"icon_set",category:"Symbols and Holidays"},
+    {id:"126",q:"Name three national U.S. holidays.",statement:"Independence Day, Thanksgiving, and Memorial Day are national U.S. holidays.",answer:"Independence Day, Thanksgiving, Memorial Day",technique:"icon_set",icons:["burst","halfMastFlag","ribbon"],category:"Symbols and Holidays"},
     {id:"127",q:"What is Memorial Day?",statement:"Memorial Day honors U.S. military members who died in service.",answer:"Honors soldiers who died in service",technique:"contrast_pair",contrast:{left:"Memorial Day",leftSub:"honors the dead",right:"Veterans Day",rightSub:"honors all who served",leftIcon:"halfMastFlag",rightIcon:"ribbon"},category:"Symbols and Holidays",cluster:"Memorial vs. Veterans Day"},
     {id:"128",q:"What is Veterans Day?",statement:"Veterans Day honors all who have served in the U.S. military, living or dead.",answer:"Honors all who served, living or dead",technique:"contrast_pair",contrast:{left:"Memorial Day",leftSub:"honors the dead",right:"Veterans Day",rightSub:"honors all who served",leftIcon:"halfMastFlag",rightIcon:"ribbon"},category:"Symbols and Holidays",cluster:"Memorial vs. Veterans Day"},
     {id:"85",q:"Benjamin Franklin is famous for many things. Name one.",statement:"Benjamin Franklin founded the first free public libraries.",answer:"Founded the first free public libraries",technique:"contrast_pair",contrast:{left:"NOT a president",leftSub:"Benjamin Franklin",right:"ALSO not a president",rightSub:"Alexander Hamilton",leftIcon:"books",rightIcon:"dollarBill"},category:"The Founding Fathers",cluster:"Not a President",entity:"Benjamin Franklin"},
@@ -351,6 +351,21 @@
     mapPin: function() { return svgWrap(
       '<path d="M32 8 C20 8 12 17 12 28 C12 42 32 58 32 58 C32 58 52 42 52 28 C52 17 44 8 32 8 Z" fill="'+PAL.rust+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
       '<circle cx="32" cy="27" r="8" fill="'+PAL.cream+'"/>', 72); },
+    speechBubble: function() { return svgWrap(
+      '<rect x="10" y="14" width="44" height="30" rx="8" fill="'+PAL.navy+'"/>' +
+      '<path d="M20 44 L20 54 L30 44 Z" fill="'+PAL.navy+'"/>' +
+      '<line x1="18" y1="24" x2="46" y2="24" stroke="'+PAL.cream+'" stroke-width="2.5" stroke-linecap="round"/>' +
+      '<line x1="18" y1="32" x2="38" y2="32" stroke="'+PAL.cream+'" stroke-width="2.5" stroke-linecap="round"/>', 72); },
+    openBook: function() { return svgWrap(
+      '<path d="M32 18 C24 14 14 16 10 20 L10 46 C14 42 24 40 32 44 C40 40 50 42 54 46 L54 20 C50 16 40 14 32 18 Z" fill="'+PAL.cream+'" stroke="'+PAL.navy+'" stroke-width="2"/>' +
+      '<line x1="32" y1="18" x2="32" y2="44" stroke="'+PAL.navy+'" stroke-width="1.5"/>', 72); },
+    bearFlex: function() { return svgWrap(
+      '<circle cx="22" cy="32" r="14" fill="'+PAL.rust+'"/>' +
+      '<circle cx="12" cy="20" r="5" fill="'+PAL.rust+'"/>' +
+      '<circle cx="32" cy="20" r="5" fill="'+PAL.rust+'"/>' +
+      '<circle cx="17" cy="30" r="1.5" fill="'+PAL.navy+'"/>' +
+      '<circle cx="27" cy="30" r="1.5" fill="'+PAL.navy+'"/>' +
+      '<path d="M44 42 Q52 36 50 25 Q58 30 56 40 Q54 48 44 48 Z" fill="'+PAL.mustard+'" stroke="'+PAL.navy+'" stroke-width="1.5"/>', 72); },
     continentAfrica: function() { return svgWrap(
       '<path d="M26 8 C34 6 42 10 44 18 C47 26 46 32 50 38 C53 44 50 50 45 52 C42 54 42 58 38 62 C34 58 32 52 30 46 C27 40 22 36 22 28 C22 20 20 12 26 8 Z" fill="'+PAL.navy+'"/>', 72); },
     mapTerritory: function() { return svgWrap(
@@ -400,8 +415,9 @@
         '<div style="font-family:\'Source Sans 3\',sans-serif;font-style:italic;font-size:14px;margin-top:6px;">'+esc(fact.lyric)+'</div></div>';
     }
     if (fact.technique === "icon_set") {
+      var setIcons = fact.icons || ["burst", "halfMastFlag", "ribbon"];
       return '<div style="display:flex;justify-content:center;gap:14px;padding:16px 0;">' +
-        ICONS.burst() + ICONS.halfMastFlag() + ICONS.ribbon() + '</div>';
+        setIcons.map(function(name) { return ICONS[name] ? ICONS[name]() : ""; }).join("") + '</div>';
     }
     if (fact.technique === "pattern_grouping") {
       var items = fact.pattern_items.map(function(item) {
