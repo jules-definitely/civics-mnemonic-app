@@ -1,153 +1,52 @@
-# Building a Civics Test Mnemonic App: A Process Log
+# How I Built The Civics Facts
 
-This is a running case study of building this project — where I let an AI
-tool ("vibe coding") handle things, where I wrote code myself first and had
-it reviewed, what broke, and what I actually learned along the way. Entries
-are dated and left in the order they happened, including the wrong turns.
+## Why it exists
 
----
+I built this because I needed it. I'm Australian, I've lived in the U.S. for 15 years, and I'm studying for the naturalization civics test: 128 official questions, up to 20 asked at the interview, 12 correct to pass. The official study material is a flat list of questions, each with several accepted answers. That's a lot of words to hold in your head when you're nervous.
 
-## September 2026 — Why this project
+So I made my own deck, built around how I actually memorize, and it worked. This app turns that deck into a tool anyone can use, and this document explains the thinking behind it.
 
-The idea started from a deck I'd already built for myself: visual and
-number associations to help pass the U.S. citizenship civics test, using
-color, layout, and pop-culture wordplay instead of rote memorization. The
-goal for this repo is two things at once — an actual usable study tool,
-and a documented case study of building it with a mix of hand-written
-decisions and AI-assisted execution, so the process is as visible as the
-result.
+## The method: five rules
 
-What was genuinely uncertain going in: whether the humor/pop-culture
-technique from my personal deck would generalize to anyone else, whether
-"AI curates the best answer when USCIS accepts several" was even a
-defensible thing to do, and what the actual interaction model should be.
-All three got resolved through real back-and-forth, not decided upfront
-— see below.
+**1. Learn facts, not questions.**
+I don't memorize "Q: Who wrote the Declaration of Independence? A: Thomas Jefferson." I memorize one sentence: *Thomas Jefferson wrote the Declaration of Independence.* If you know the fact, you can answer any way the question is asked. So the app has no quiz format. Each page states one fact plainly, like a page in a short book.
 
-## Product scoping — before any code
+**2. Pick one answer, the easiest to remember.**
+For many questions USCIS accepts several answers. Studying all of them is wasted effort, because you only have to say one. For each question I picked one, judged by four things:
+- Is it **distinct**, so I won't confuse it with another fact?
+- Can I **picture** it?
+- Is it **short** enough to recall under pressure?
+- Does it offer a **hook**, like a rhyme, pun or number?
 
-Before touching the repo, we spent a long session on product decisions:
-who the audience actually is (English-fluent, pop-culture-literate,
-long-term US residents from Anglophone countries — not a broad ESL
-audience for v1), which version of the civics test to target (2025,
-128-question), and a real framework for two hard problems: which answer
-to teach when USCIS accepts several, and which mnemonic technique fits
-a given fact. That framework — distinctiveness, concreteness, brevity,
-rhyme potential for answer choice; numeric badge / contrast pair /
-phonetic pun / translation-metaphor / plain icon for technique choice —
-became the spec everything after this was built against. See
-`PRODUCT_BRIEF.md` for the full framework; it's the actual design
-document, not this file.
+Then I checked each pick against every other fact in the set, not just its own section. On my first pass, Jefferson's answer duplicated a fact I was already learning elsewhere. Only that cross-check caught it.
 
-**Skill built:** separating "what to teach" from "how to make it stick"
-as two distinct curation decisions, each with its own criteria — rather
-than one vague "make it memorable" step.
+**3. Group facts that share something.**
+Facts that look random often have a common denominator. George Washington, for example, comes up in the Founding Fathers, Colonial Period and System of Government sections. Instead of three unrelated facts, I learn a set of facts about one person I already know. New facts attach to something familiar. I group in two ways:
+- **By person or thing.** One familiar figure, with each fact branching off it. There's no limit on how many facts one figure can hold.
+- **By shape or confusion risk.** Facts with the same structure, or that are easy to mix up, go side by side: Memorial Day vs. Veterans Day, a 6-year Senate term vs. a 2-year House term. These are capped at 3–4 facts per card, so a card never turns back into the information overload I'm trying to avoid.
 
-## Curating the pilot content — hand-designed first, AI-assisted at scale
+**4. Make the icons clues to the answer.**
+Every fact comes with a short row of icons, and every icon stands for a word in the answer. Think of a rebus. If the fact were *the cow jumped over the moon*, the icons would be a cow, a jump, and a moon, with the cow above the moon. You could rebuild the sentence from the pictures alone. A picture that only names the topic ("this one's about government") doesn't help you remember anything.
 
-Ran all 20 pilot facts (Geography/Symbols/Holidays + Founding Fathers)
-through the framework by hand, fact by fact, rather than batch-generating
-answers and hoping they were good. This caught a real mistake: an early
-pass curated Thomas Jefferson's entity-hub fact as "the Louisiana
-Purchase" — which turned out to duplicate a different fact (buying the
-Louisiana Territory) that was *already* being taught elsewhere in the
-pool. Caught only because the distinctiveness criterion was applied
-consistently, not because of a name-based bug. Fixed by re-checking every
-entity hub's facts against everything else already curated for that
-person, not just within the current category.
+**5. Study like cue cards.**
+Each card shows the icon row and the full fact together. Once a card feels familiar, a toggle hides the fact and leaves only the icons. Say the fact out loud from the clues, then tap to check. Cards you know cold can be set aside, and a simple day-streak encourages coming back.
 
-**Skill built:** curation isn't a one-shot generation step — it needs a
-cross-check against everything else in the corpus, or duplicate content
-slips through silently.
+## Guardrails
 
-## First build: a quiz. It was wrong.
+- **Accuracy is never traded for memorability.** Each card has two layers: the plain fact, worded so I'd stand behind it, and the memory hook. The hook can be playful because it never has to carry the fact by itself.
+- **Some topics stay plain.** Facts about Native American tribes, slavery, civil rights or 9/11 get respectful, literal treatment. No wordplay.
+- **Answers that change are flagged.** The current President, Vice President, Speaker and Chief Justice are marked "verify before your interview," because they change. Questions about your own state or district point you to the official lookup.
+- **This is a study aid.** It isn't affiliated with USCIS and isn't legal advice.
 
-The first working prototype was a quiz-drill loop — question shown, tap
-to reveal the answer, rate your recall, spaced-repetition scheduling
-decides what's due tomorrow. It worked technically (persisted state via
-`window.storage`, a real SM-2-style scheduler) but it was built on an
-assumption I never actually confirmed: that "study tool" meant "quiz."
+## How the build went
 
-It didn't. The actual mental model was a children's book — something you
-read and re-read, with the facts stated plainly, not posed as questions
-to be tested on. Self-testing is a mode you can switch into, not the
-default way you encounter the content.
+I worked with AI tools throughout. I made the decisions: the method above, which answer to teach, which facts belong together. The AI did much of the execution. The places where it went wrong taught me the most.
 
-**Roadblock:** the fix wasn't a tweak to the quiz UI, it was a full
-rebuild — different data presentation (statement instead of question),
-different navigation model (flip through pages vs. a scored "due today"
-queue), and dropping spaced-repetition scheduling entirely in favor of a
-simple day-streak. Both prototype files were kept in the repo rather than
-overwriting the first — the wrong version is as useful a record as the
-right one.
+- **Scoping came first.** Before any code, I wrote down who it's for (fluent English speakers who know mainstream pop culture, like me), which test version it targets, and the rules above. That document became the spec everything was checked against.
+- **Version one was a quiz. That was wrong.** The first prototype was a flashcard drill with spaced-repetition scheduling. It worked, but it wasn't how I study. I rebuilt it as a book you read and reread, with self-testing as an option. I kept both versions as a record. Lesson: confirm how something will be used before building it, even when the content underneath is solid.
+- **The icons drifted toward topic labels.** When I asked for icons, the tool gave me symbols for each topic: one scroll for 18 facts, one set of scales for 15. They looked fine, but they didn't help me remember anything. Getting icons that work as clues meant writing the rule down precisely: every icon must stand for a word in the answer. An instruction like "make it visual" was too vague.
+- **Simple style, on purpose.** I originally imagined loud, illustrated, pop-culture poster art. Simple flat icons were faster to build and avoided drawing real people's faces. Once I looked at the result, I decided to keep the simple look for version one. The playfulness stays in the hooks, not the illustration.
 
-**Skill built:** confirm the interaction model explicitly before building
-it, even when the content architecture underneath is solid. Good data
-doesn't guarantee the right UI sits on top of it.
+## Where it stands
 
-## Building the icon set — from placeholder to real visual language
-
-Once the book format was right, the placeholder colored shapes (a plain
-circle standing in for "numeric badge," for example) weren't enough to
-judge whether the actual mnemonic techniques worked — you can't tell if
-a pun lands from a gray box. Built a real hand-drawn SVG icon set instead
-— a feather, a Capitol dome, a flag that actually renders stripes vs.
-stars, a crossed-out crown for the "not a president" contrast cards, a
-tricorn hat standing in for Washington rather than a likeness — matching
-the bold flat Americana palette from the original deck (rust, mustard,
-cream, navy).
-
-Couldn't render-test this in a browser directly — the sandbox's headless
-browser install was blocked by network restrictions — so verification
-was: check the JS parses cleanly, and cross-check every icon name a fact
-references against the icon library to make sure nothing points at an
-undefined icon and renders blank. That catches wiring bugs, not visual
-quality — actual "does this read clearly" judgment still needed a human
-looking at it.
-
-**Skill built:** when you can't verify visually, verify what you can
-(structural correctness) and say plainly what you couldn't check, rather
-than presenting untested code as done.
-
-## The minimalist pivot — from placeholder to deliberate MVP strategy
-
-The original creative direction for this project was maximalist and
-"unhinged" — full illustrated pop-culture poster art, in the spirit of
-the founder's original deck (Jude Law standing in for "rule of law,"
-George Washington set to a cartoon theme song). When it came time to
-replace placeholder shapes with real icons, what got built instead was
-minimalist — clean flat SVG icons, a restrained four-color palette, no
-illustrated scenes. That wasn't a deliberate style decision at the
-time; it was the fastest way to get something real to look at, and it
-also sidestepped a real constraint (AI-generated tools won't render
-likenesses of real, named people, which the original "unhinged" pun
-mechanic leaned on).
-
-The pivot: rather than treating the minimalist result as unfinished
-work waiting for "real" illustration, it got reviewed honestly and kept
-on purpose. "Civics memorization for minimalists" is now the stated V1
-direction, not an apology for what didn't get built. The playful,
-sometimes odd technique layer underneath — a tune set to a cartoon
-theme, five state names grouped by a shared "New" prefix, a crossed-out
-crown for "not a president" — is untouched. Only the rendering style
-changed from what was originally scoped.
-
-**Skill built:** recognizing when a practical shortcut has actually
-produced the right answer, and being willing to consciously adopt it
-rather than treating "what I originally planned" as the only legitimate
-outcome. Not every pivot is a correction of a mistake — this one was a
-correction of an assumption.
-
-## What's still open
-
-- Two facts (Independence Day as its own page vs. as part of "name three
-  holidays") still overlap in content — not yet resolved.
-- Only 20 of 128 official questions are curated so far.
-- No real usage data yet — the book exists and works, but hasn't been
-  used across multiple real days to see if the day-streak actually pulls
-  anyone back.
-
-## What I'd do differently
-
-<!-- fill in once there's been real multi-day usage to reflect on -->
-[fill in later]
+125 of the 128 questions are written and readable in the prototype. I'm now redrawing the icons as answer clues, starting with the System of Government chapter (47 facts), then working through the rest.

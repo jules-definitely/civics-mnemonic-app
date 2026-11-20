@@ -2,6 +2,8 @@
 
 A minimalist study tool for the U.S. naturalization civics test.
 
+**[Read the case study →](CASE_STUDY.md)** · how I turned a static question list into a learning system
+
 ## What this is
 
 Most civics test prep is a flashcard quiz — a question appears, you
@@ -16,13 +18,13 @@ listing every accepted variant at once.
 
 ## Status
 
-All 128 official questions are built and readable in the prototype.
-This is a complete first pass through the content — visual style and
-interaction details are still being refined.
+125 of the 128 official questions are built and readable in the
+prototype. The icon system is being redrawn so every icon works as a
+clue to the answer.
 
 ## Try it
 
-Open `prototype/civics_book_prototype.html` in a browser. Start from the
+Open `civics_book_prototype.html` in a browser. Start from the
 cover page, pick a chapter, and read.
 
 ## Project structure
@@ -30,14 +32,13 @@ cover page, pick a chapter, and read.
 ```
 civics-mnemonic-app/
 ├── README.md
-├── prototype/
-│   ├── civics_book_prototype.html   # current version
-│   └── civics_prototype.html        # earlier version, kept for reference
-├── data/                            # curated facts, by category
-├── PROCESS.md                       # build log
-├── PRODUCT_BRIEF.md                 # design document
-├── docs/
-└── src/
+├── CASE_STUDY.md                # portfolio case study
+├── PROCESS.md                   # how it was built
+├── PRODUCT_BRIEF.md             # design document
+├── civics_book_prototype.html   # the app
+├── index.html                   # redirects to the app
+├── facts_*.json                 # curated facts, by category
+└── *clusters*.json              # fact groupings
 ```
 
 ## Tech
