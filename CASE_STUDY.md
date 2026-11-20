@@ -2,7 +2,9 @@
 
 **Turning a static government question list into a learning system**
 
-I'm preparing for my own U.S. citizenship interview. The official study material is a flat list: 128 questions, many with several accepted answers. I took it apart, rebuilt it as structured data with explicit rules, and turned it into an interactive study tool. AI tools did much of the execution. The system, the rules and the quality bar were mine.
+I became a U.S. citizen in 2024. To prepare for the civics test, I built my own way of memorizing it, and afterward shared that method with a few colleagues preparing for their own interviews. Then I turned it into an app, to challenge myself and learn the build process from end to end.
+
+The official study material is a flat list: 128 questions on the current test, many with several accepted answers. I took it apart, rebuilt it as structured data with explicit rules, and turned it into an interactive study tool. AI tools did much of the execution. The system, the rules and the quality bar were mine.
 
 ## At a glance
 

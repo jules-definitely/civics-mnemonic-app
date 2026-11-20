@@ -2,9 +2,11 @@
 
 ## Why it exists
 
-I built this because I needed it. I'm Australian, I've lived in the U.S. for 15 years, and I'm studying for the naturalization civics test: 128 official questions, up to 20 asked at the interview, 12 correct to pass. The official study material is a flat list of questions, each with several accepted answers. That's a lot of words to hold in your head when you're nervous.
+I'm Australian, I've lived in the U.S. for 15 years, and I became a citizen in 2024. The official study material for the civics test is a flat list of questions, many with several accepted answers. That's a lot of words to hold in your head when you're nervous.
 
-So I made my own deck, built around how I actually memorize, and it worked. This app turns that deck into a tool anyone can use, and this document explains the thinking behind it.
+So I made my own deck, built around how I actually memorize, and it worked. Afterward, a few colleagues preparing for their own interviews asked how I'd studied, and I walked them through the method.
+
+Building this app came after that. I wanted to challenge myself and learn the build process from end to end, using the method I already knew worked. It targets the current 2025 version of the test: 128 questions, up to 20 asked at the interview, 12 correct to pass. This document explains the thinking behind it.
 
 ## The method: five rules
 
