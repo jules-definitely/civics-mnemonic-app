@@ -54,6 +54,9 @@
   .chapter:hover { background: var(--pink); }
   .chapter-count { color: var(--muted); font-weight: 400; font-size: 15px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
+  .credit { margin: 10px 20px 0; font-size: 14px; color: var(--muted); }
+  .credit a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+  .credit a:hover { color: var(--red-text); }
   .fine { margin-top: 32px; font-size: 14px; color: var(--muted); max-width: 34em; }
 
   .btn { border: var(--rule); border-radius: 320px; padding: 13px 22px; font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.2; transition: background-color .15s ease, color .15s ease; }
@@ -893,7 +896,8 @@
           (dismissedCount ? '<button class="link" id="cvb-manage">See what you\'ve marked as known</button>' : '<p class="tracker-tip">Tap any square to jump to that fact.</p>') +
         '</section>' +
         '<nav class="chapters" aria-label="Topics"><h2>Or study by topic</h2>' + chapters + '</nav>' +
-        '<p class="fine">A study aid only. Not affiliated with USCIS and not legal advice. Officeholders change, so check current names before your interview.</p>';
+        '<p class="fine">A study aid only. Not affiliated with USCIS and not legal advice. Officeholders change, so check current names before your interview.</p>' +
+        '<p class="credit">Made by Julia Weikel. <a href="https://juliaweikel.fyi/civics.html">About this project</a></p>';
       on("cvb-open", function() { openBook(); });
       on("cvb-practice", function() {
         if (flagN) { openBook(null, "practice"); return; }
