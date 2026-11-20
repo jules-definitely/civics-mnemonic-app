@@ -32,7 +32,7 @@
   :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 
   .app { max-width: 560px; margin: 0 auto; padding: 0 0 48px; min-height: 100vh; }
-  .app > *:not(.top):not(.cue):not(.chapters) { margin-left: 20px; margin-right: 20px; }
+  .app > *:not(.top):not(.cue):not(.chapters):not(.threads):not(.sheet):not(.sheet-backdrop) { margin-left: 20px; margin-right: 20px; }
 
   .top { display: flex; justify-content: space-between; align-items: stretch; background: var(--white); border-bottom: var(--rule); margin-bottom: 40px; }
   .brand { display: flex; align-items: stretch; }
@@ -114,6 +114,40 @@
   .flag-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 2px solid var(--black); border-radius: 32px; padding: 5px 11px; font-size: 14px; font-weight: 600; color: var(--black); }
   .flag-btn .ti { font-size: 16px; }
   .flag-btn[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--white); }
+  .connect { display: block; margin-top: 14px; background: none; border: 0; padding: 0; font-size: 15px; font-weight: 600; color: var(--black); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 4px; text-align: left; }
+  .connect + .connect { margin-top: 8px; }
+  .connect:hover { color: var(--red-text); }
+  .mode-pill.set { background: var(--black); }
+  .threads { margin: 0; padding: 18px 20px 24px; background: var(--white); border-bottom: var(--rule); }
+  .threads h2 { font-family: var(--display); font-weight: 700; font-size: 22px; color: var(--black); margin: 0 0 4px; }
+  .threads-label { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red-text); margin: 16px 0 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 2px solid var(--black); background: var(--white); border-radius: 32px; padding: 7px 12px; font-size: 15px; font-weight: 600; color: var(--black); }
+  .chip span { color: var(--muted); font-weight: 500; margin-left: 2px; }
+  .chip:hover { background: var(--pink); }
+  .sheet-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 50; animation: fade-in .18s ease; }
+  .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; max-height: 88vh; display: flex; flex-direction: column; background: var(--cream); border-top: var(--rule); animation: sheet-up .24s ease; }
+  .sheet-head { display: flex; align-items: center; gap: 14px; padding: 16px 16px 14px 20px; background: var(--white); border-bottom: var(--rule); }
+  .sheet-clue .rebus { justify-content: flex-start; }
+  .sheet-clue .cap { display: none; }
+  .sheet-titles { flex: 1; min-width: 0; }
+  .sheet-titles .eyebrow { margin: 0 0 2px !important; }
+  .sheet-titles h2 { font-family: var(--display); font-weight: 750; font-size: 24px; line-height: 1.1; letter-spacing: -0.015em; color: var(--black); margin: 0; }
+  .sheet-close { width: 44px; height: 44px; flex: none; border: var(--rule); border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--black); }
+  .sheet-close:hover { background: var(--black); color: var(--white); }
+  .sheet-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .sheet-item { padding: 16px 20px 18px; border-bottom: 1px solid var(--hair); background: var(--white); }
+  .sheet-visual { background: var(--pink); border: 2px solid var(--black); padding: 14px 10px; margin-bottom: 12px; zoom: 0.8; }
+  .sheet-fact { font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1.2; color: var(--black); margin: 0; }
+  .sheet-item .say { margin-top: 6px; font-size: 15px; }
+  .sheet-foot { padding: 14px 20px calc(14px + env(safe-area-inset-bottom)); background: var(--cream); border-top: var(--rule); }
+  .sheet-foot .btn { width: 100%; }
+  @keyframes sheet-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @media (min-width: 600px) {
+    .sheet { left: 50%; right: auto; bottom: auto; top: 50%; width: 560px; transform: translate(-50%, -50%); border: var(--rule); animation: none; }
+    .threads { border: var(--rule); border-top: 0; }
+  }
   .nav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
   .badge { width: 92px; height: 92px; border-radius: 50%; background: var(--red); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 750; font-size: 28px; flex: none; }
@@ -316,7 +350,26 @@
     return a;
   }
 
+  /* Connections: a second way through the facts, by person or by theme. */
+  var SETS = {
+    washington: { title: "George Washington", link: "All George Washington facts", kind: "person", clue: "wash-machine/Wash-ington", ids: ["86", "80"] },
+    jefferson: { title: "Thomas Jefferson", link: "All Thomas Jefferson facts", kind: "person", clue: "@nickel/Jefferson", ids: ["78", "87"] },
+    madison: { title: "James Madison", link: "All James Madison facts", kind: "person", clue: "mood-angry/Mad-ison", ids: ["88", "83", "14"] },
+    hamilton: { title: "Alexander Hamilton", link: "All Alexander Hamilton facts", kind: "person", clue: "meat/Ham-ilton", ids: ["89", "83", "14"] },
+    lincoln: { title: "Abraham Lincoln", link: "All Abraham Lincoln facts", kind: "person", clue: "@chain/Link-coln", ids: ["94", "95", "92"] },
+    mlk: { title: "Martin Luther King Jr.", link: "All Martin Luther King Jr. facts", kind: "person", clue: "!MLK/Martin_Luther_King_Jr.", ids: ["113", "112"] },
+    anthony: { title: "Susan B. Anthony", link: "All Susan B. Anthony facts", kind: "person", clue: "!Susan_B./Susan_B._Anthony", ids: ["99", "102"] },
+    president: { title: "Presidents", link: "All facts about presidents", kind: "theme", clue: "podium/President", ids: ["86", "17", "36", "37", "40", "41", "42", "43", "45", "47", "38", "39"] },
+    amendments: { title: "Amendments by number", link: "All amendment facts", kind: "theme", clue: "script/Amendments", ids: ["7", "5", "60", "97", "98", "71", "102", "37", "63"] },
+    voting: { title: "Voting rights", link: "All voting rights facts", kind: "theme", clue: "checkbox/Voting", ids: ["64", "98", "102", "63"] },
+    britain: { title: "Britain", link: "All facts about Britain", kind: "theme", clue: "^gb/Britain", ids: ["77", "9", "76", "125", "91"] }
+  };
+  var SET_ORDER = ["washington", "jefferson", "madison", "hamilton", "lincoln", "mlk", "anthony", "president", "amendments", "voting", "britain"];
+  function setsFor(id) { return SET_ORDER.filter(function(k) { return SETS[k].ids.indexOf(id) > -1; }); }
+  function factById(id) { return facts.find(function(x) { return x.id === id; }); }
+
   function buildPages() {
+    if (state.mode === "set") return SETS[state.setKey].ids.map(factById);
     var pages = [];
     CATEGORY_ORDER.forEach(function(cat) {
       var inCat = facts.filter(function(f) { return f.category === cat && !state.dismissed[f.id] && !MERGED_INTO[f.id] && (state.mode !== "practice" || state.flagged[f.id]); });
@@ -819,8 +872,10 @@
     return "";
   }
 
-  function openBook(startCategory, mode) {
+  function openBook(startCategory, mode, setKey) {
     state.mode = mode || null;
+    state.setKey = setKey || null;
+    state.sheet = null;
     state.pages = buildPages();
     state.pageIndex = 0;
     if (startCategory) {
@@ -854,6 +909,38 @@
   function goHome() { state.screen = "cover"; render(); window.scrollTo(0, 0); }
 
   function on(id, fn) { var el = document.getElementById(id); if (el) el.onclick = fn; }
+
+  function sheetHTML() {
+    var st = SETS[state.sheet];
+    var items = st.ids.map(function(id) {
+      var f = factById(id);
+      return '<li class="sheet-item"><div class="sheet-visual">' + techniqueVisual(f) + '</div>' +
+        '<p class="sheet-fact">' + esc(f.statement) + '</p>' +
+        (f.answer && f.answer !== f.statement ? '<p class="say">Say: <strong>' + esc(f.answer) + '</strong></p>' : '') + '</li>';
+    }).join("");
+    return '<div class="sheet-backdrop" id="cvb-sheet-bg"></div>' +
+      '<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cvb-sheet-title">' +
+        '<div class="sheet-head"><div class="sheet-clue">' + rebusVisual(st.clue) + '</div>' +
+          '<div class="sheet-titles"><p class="eyebrow">' + (st.kind === "person" ? "Person" : "Theme") + ', ' + st.ids.length + ' facts</p><h2 id="cvb-sheet-title">' + esc(st.title) + '</h2></div>' +
+          '<button class="sheet-close" id="cvb-sheet-close" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button></div>' +
+        '<ol class="sheet-list">' + items + '</ol>' +
+        '<div class="sheet-foot"><button class="btn btn-primary" id="cvb-sheet-study">Study these ' + st.ids.length + ' facts</button></div>' +
+      '</div>';
+  }
+
+  function attachSheet(root) {
+    Array.prototype.forEach.call(root.querySelectorAll("[data-set]"), function(el) {
+      el.onclick = function(e) { e.stopPropagation(); state.sheet = el.getAttribute("data-set"); state.turned = false; render(); };
+    });
+    if (!state.sheet) { document.body.style.overflow = ""; return; }
+    root.insertAdjacentHTML("beforeend", sheetHTML());
+    document.body.style.overflow = "hidden";
+    var close = function() { state.sheet = null; render(); };
+    on("cvb-sheet-close", close);
+    on("cvb-sheet-bg", close);
+    on("cvb-sheet-study", function() { var k = state.sheet; openBook(null, "set", k); window.scrollTo(0, 0); });
+    var c = document.getElementById("cvb-sheet-close"); if (c) c.focus();
+  }
 
   function render() {
     var root = document.getElementById("cvb-root");
@@ -896,6 +983,10 @@
           (dismissedCount ? '<button class="link" id="cvb-manage">See what you\'ve marked as known</button>' : '<p class="tracker-tip">Tap any square to jump to that fact.</p>') +
         '</section>' +
         '<nav class="chapters" aria-label="Topics"><h2>Or study by topic</h2>' + chapters + '</nav>' +
+        '<section class="threads" aria-label="People and themes"><h2>Or study by person or theme</h2>' +
+          '<p class="threads-label">People</p><div class="chips">' + SET_ORDER.filter(function(k) { return SETS[k].kind === "person"; }).map(function(k) { return '<button class="chip" data-set="' + k + '">' + esc(SETS[k].title) + ' <span>' + SETS[k].ids.length + '</span></button>'; }).join("") + '</div>' +
+          '<p class="threads-label">Themes</p><div class="chips">' + SET_ORDER.filter(function(k) { return SETS[k].kind === "theme"; }).map(function(k) { return '<button class="chip" data-set="' + k + '">' + esc(SETS[k].title) + ' <span>' + SETS[k].ids.length + '</span></button>'; }).join("") + '</div>' +
+        '</section>' +
         '<p class="fine">A study aid only. Not affiliated with USCIS and not legal advice. Officeholders change, so check current names before your interview.</p>' +
         '<p class="credit">Made by Julia Weikel. <a href="https://juliaweikel.fyi/civics.html">About this project</a></p>';
       on("cvb-open", function() { openBook(); });
@@ -910,6 +1001,7 @@
       Array.prototype.forEach.call(root.querySelectorAll(".chapter"), function(el) {
         el.onclick = function() { openBook(el.getAttribute("data-cat")); };
       });
+      attachSheet(root);
       return;
     }
 
@@ -956,7 +1048,8 @@
     var pct = Math.round((state.pageIndex + 1) / state.pages.length * 100);
     var html = '<header class="bar">' +
         '<button class="link" id="cvb-cover">Home</button>' +
-        (state.mode === "practice" ? '<span class="mode-pill"><i class="ti ti-flag" aria-hidden="true"></i>Practice list</span>' :
+        (state.mode === "set" ? '<span class="mode-pill set">' + esc(SETS[state.setKey].title) + '</span>' :
+        state.mode === "practice" ? '<span class="mode-pill"><i class="ti ti-flag" aria-hidden="true"></i>Practice list</span>' :
         '<select id="cvb-jump" class="chapter-select" aria-label="Topic">' +
           CATEGORY_ORDER.map(function(c) { return '<option value="' + esc(c) + '"' + (c === fact.category ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") +
         '</select>') +
@@ -969,6 +1062,7 @@
           (fact.answer && fact.answer !== fact.statement ? '<p class="say"' + (hidden ? ' aria-hidden="true"' : '') + '>Say: <strong>' + esc(fact.answer) + (TIME_SENSITIVE[fact.id] ? '<span class="ast" aria-label="see note">*</span>' : '') + '</strong></p>' : '') +
           (TIME_SENSITIVE[fact.id] ? '<p class="verify"' + (hidden ? ' aria-hidden="true"' : '') + '><span class="ast" aria-hidden="true">*</span> ' + esc(TIME_SENSITIVE[fact.id]) + '</p>' : '') +
           (hidden ? '<button class="reveal" id="cvb-reveal">Tap to reveal</button>' : '') +
+          (state.mode === "set" || hidden ? '' : setsFor(fact.id).map(function(k) { return '<button class="connect" data-set="' + k + '">' + esc(SETS[k].link) + ' (' + SETS[k].ids.length + ')</button>'; }).join("")) +
         '</div></article>' +
       '<div class="tools">' +
         '<button class="switch-btn" id="cvb-cover-toggle" role="switch" aria-checked="' + (state.coverOn ? 'true' : 'false') + '"><span class="switch" aria-hidden="true"></span>Hide the fact</button>' +
@@ -1000,9 +1094,11 @@
     });
     on("cvb-card", function() { if (state.coverOn && !state.revealed) { state.revealed = true; render(); } });
     var jump = document.getElementById("cvb-jump"); if (jump) jump.onchange = function(e) { openBook(e.target.value); };
+    attachSheet(root);
   }
 
   document.addEventListener("keydown", function(e) {
+    if (state.sheet) { if (e.key === "Escape") { state.sheet = null; render(); } return; }
     if (state.screen !== "reading" || /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
     if (e.key === "ArrowRight") goTo(1);
     else if (e.key === "ArrowLeft") goTo(-1);
