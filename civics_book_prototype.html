@@ -774,7 +774,7 @@
           '<span class="streak">' + state.streak + '-day streak</span></header>' +
         '<section class="intro">' +
           '<h1>Learn the citizenship test as facts, not questions.</h1>' +
-          '<p>' + facts.filter(function(f) { return !MERGED_INTO[f.id]; }).length + ' facts from the 2025 civics test, one per page. Each comes with a row of icons that spell out the answer, so you can test yourself from the pictures alone.</p>' +
+          '<p>All 128 questions from the 2025 civics test, taught as ' + facts.filter(function(f) { return !MERGED_INTO[f.id]; }).length + ' facts, one per page. Each comes with a row of icons that spell out the answer, so you can test yourself from the pictures alone.</p>' +
           '<div class="actions"><button class="btn btn-primary" id="cvb-open">Start reading</button>' +
           (dismissedCount ? '<button class="btn btn-quiet" id="cvb-manage">' + dismissedCount + ' marked as known</button>' : '') +
           '</div></section>' +

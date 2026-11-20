@@ -18,13 +18,13 @@ listing every accepted variant at once.
 
 ## Status
 
-125 of the 128 official questions are built and readable in the
-prototype. The icon system is being redrawn so every icon works as a
-clue to the answer.
+All 128 official questions are covered by 124 cards. Four pairs of
+questions share the same answer, so each pair is taught as one fact.
+Each card has a row of icons that spells out the answer.
 
 ## Try it
 
-Open `civics_book_prototype.html` in a browser. Start from the
+**[Open the app](https://jules-definitely.github.io/civics-mnemonic-app/)**, or open `civics_book_prototype.html` in a browser. Start from the
 cover page, pick a chapter, and read.
 
 ## Project structure

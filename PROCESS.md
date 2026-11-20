@@ -49,4 +49,6 @@ I worked with AI tools throughout. I made the decisions: the method above, which
 
 ## Where it stands
 
-125 of the 128 questions are written and readable in the prototype. I'm now redrawing the icons as answer clues, starting with the System of Government chapter (47 facts), then working through the rest.
+All 128 questions are covered by 124 cards. Four pairs of questions have the same answer, so each pair is taught as one fact. Every card now has an icon row that works as a clue to the answer, except three that keep a clue that already worked: a song, a word pattern and a translation.
+
+Redrawing the icons was a good test of the rule. Once "every icon stands for a word in the answer" was written down, the full set could be redone chapter by chapter with the same logic. Symbols keep one meaning across the whole app: the globe is always Secretary of State, the treasure chest is always the Treasury, a broken chain always means freedom. Facts about sensitive history get plain, literal icons with no wordplay.

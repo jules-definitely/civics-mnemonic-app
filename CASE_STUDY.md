@@ -14,7 +14,8 @@ I'm preparing for my own U.S. citizenship interview. The official study material
 | **5** | Founding-figure hubs, each pulling facts from 3 different sections of the test |
 | **11 / 8** | Facts flagged for respectful treatment / flagged as time-sensitive |
 | **⅓** | Share of cards that relied on just 3 generic icons in the first build. Finding this drove the second version of the icon system |
-| **125 / 128** | Questions built in the working prototype |
+| **128 → 124** | Official questions covered by 124 cards. Four pairs of questions share the same answer, so each pair is taught as one fact |
+| **121 / 124** | Cards whose icon row spells out the answer. The other 3 keep a clue that already worked (a song, a word pattern, a translation) |
 
 ---
 
@@ -69,7 +70,7 @@ An error on a citizenship test isn't cosmetic, so trust was built into the data 
 | What happened | Root cause | What I changed |
 |---|---|---|
 | The first build was a well-made quiz, which was the wrong product | I never stated how it would be used, so the AI defaulted to the standard for the category | Define the interaction model before building. Rebuilt as a reread-able book; kept the first version as a record |
-| Icons labeled the topic instead of cueing the answer: one scroll stood in for 18 facts | "Make it visual" was too vague | Rewrote the direction as a rule you can test: *could you rebuild the answer from the icons alone?* |
+| Icons labeled the topic instead of cueing the answer: one scroll stood in for 18 facts | "Make it visual" was too vague | Rewrote the direction as a rule you can test: *could you rebuild the answer from the icons alone?* Then redrew the full set against it, with fixed meanings (the globe is always Secretary of State, a broken chain always means freedom) |
 | A duplicate answer slipped through | Review was scoped to one section | Check every addition against the whole set |
 | Visual output couldn't be rendered for review | Tooling limits | Required structural checks plus a plain statement of what wasn't verified |
 
@@ -84,6 +85,6 @@ If this were taken further, these are the signals I'd use to judge whether the s
 - **Rebus test:** with the text hidden, can someone new to the material say the fact from the icons?
 - **Accuracy:** zero errors against the official list, and time-sensitive answers updated within a week of any change.
 
-## Next
+## Where it stands
 
-The second version of the icons (rebus), starting with System of Government's 47 facts. The pipeline is built to absorb a test revision: USCIS has changed the test twice since 2020.
+The app is complete: all 128 questions are covered, and every card pairs its fact with an icon clue. The pipeline is built to absorb a test revision: USCIS has changed the test twice since 2020.
