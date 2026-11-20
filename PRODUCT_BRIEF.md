@@ -316,3 +316,17 @@ Two mechanisms drive return, and v1 should pick a primary:
 - [ ] No visual assets exist yet for any curated fact — everything so far
       is content architecture. Next real milestone is producing actual
       art/design for the pilot category before expanding to more content
+
+## Icon review rules (from the November 2026 review round)
+
+Every icon row is checked against these rules. They came from reviewing the finished app as a learner.
+
+1. **Specific, not generic.** An icon must point at this answer. A blank person, swords, a globe or a crowd only names the category.
+2. **Every key word gets a clue.** Words like "1900s," "free" and "taken" can't be dropped.
+3. **People get a name clue:** a pun, nickname or famous association (Link-coln, FDR, Jefferson's nickel).
+4. **Places look like themselves.** Countries are flags; continents and landmarks are their recognizable shapes.
+5. **Show the story.** Keep actions visible ("entered," "taken"), using two lines when needed.
+6. **Pair what's easy to confuse,** like '76 declare / '87 constitute, or 6- and 2-year terms.
+7. **Clear beats minimal.** Clever is welcome when it adds meaning.
+8. **One symbol, one meaning,** everywhere in the app (broken chain = freedom, up-right arrow = rights).
+9. **Sensitive facts stay literal and respectful,** but still specific.
