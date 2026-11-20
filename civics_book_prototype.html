@@ -115,6 +115,9 @@
   .tok-i { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 48px; max-width: 132px; }
   .tok-i .ti { font-size: 40px; line-height: 1; color: var(--black); }
   .tok-i svg { color: var(--black); }
+  .tok-i svg.flag { margin-top: 2px; height: 36px; width: 54px; }
+  .tok-br { flex-basis: 100%; height: 0; }
+  .tok-k { align-self: flex-start; margin-top: 6px; border: 2px solid var(--black); background: var(--white); padding: 3px 9px; font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--black); line-height: 1.3; }
   .tok-w { height: 40px; display: flex; align-items: center; font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--black); white-space: nowrap; }
   .cap { font-size: 12px; font-weight: 500; line-height: 1.25; color: var(--text); text-align: center; }
   .caps-off .cap { visibility: hidden; }
@@ -557,7 +560,7 @@
     "73": "ship/colonists came_for pray/religious_freedom",
     "74": "users-group/American_Indians lived_here before ship/Europeans",
     "75": "world/people_from_Africa were_taken_and_enslaved",
-    "76": "swords/American_Revolution → link-off/independence_from_Britain",
+    "76": "swords/American_Revolution → link-off/independence_from ^gb/Britain",
     "77": "cash/taxation without user-check/representation",
     "78": "feather/Thomas_Jefferson wrote file-certificate/the_Declaration",
     "79": "file-certificate/Declaration adopted #July_4,_1776",
@@ -579,21 +582,21 @@
     "98": "script/15th_Amendment #1870 → users-group/men_of_any_race checkbox/can_vote",
     "99": "!Susan_B./Susan_B._Anthony led woman/women's arrow-up-right/rights",
     "100": "world/World + swords/War #II in #1900s",
-    "101": "ship/Germany_attacks_U.S._ships → swords/World_War_I",
+    "101": "^de/Germany attacks ship/U.S._ships | ^us/USA [entered] swords/World_War_I",
     "102": "script/19th_Amendment #1920 → woman/all_women checkbox/can_vote",
     "103": "trending-down/Great_Depression = hourglass/longest_recession",
     "104": "chart-line/stock_market → trending-down/crash #1929",
     "105": "!FDR/Franklin_Roosevelt = podium/President during trending-down/Depression + swords/WWII",
-    "106": "circle/pearl + anchor/harbor → swords/WWII",
+    "106": "^jp/Japan attacks circle/Pearl + anchor/Harbor | ^us/USA [entered] swords/World_War_II",
     "107": "eye/Eisen- clock/-hower signed road/Interstate_Highways #1956",
-    "108": "snowflake/Cold_War rival map/Soviet_Union",
+    "108": "snowflake/Cold_War rivals ^us/USA vs ^su/Soviet_Union",
     "109": "snowflake/Cold_War concern alert-triangle/communism",
-    "110": "swords/Korea + swords/Vietnam → hand-stop/stop alert-triangle/communism",
+    "110": "^us/USA [entered] #2 swords/wars | ^kr/Korea + ^vn/Vietnam → hand-stop/stop alert-triangle/communism",
     "112": "arrow-up-right/civil_rights_movement fought_to hand-stop/end_racial_discrimination",
     "113": "!MLK/Martin_Luther_King_Jr. fought_for arrow-up-right/civil_rights",
-    "114": "swords/Persian_Gulf_War tank/forced_Iraqi_military out_of map-pin/Kuwait",
+    "114": "^us/USA [entered] swords/Persian_Gulf_War | to_force ^iq/Iraqi_military out_of ^kw/Kuwait",
     "115": "calendar/September_11,_2001 terrorist_attacks_on_the_U.S.",
-    "116": "calendar/after_9/11 → swords/war_in_Afghanistan",
+    "116": "calendar/after_9/11 → swords/war_in ^af/Afghanistan",
     "117": "users-group/Cherokee",
     "118": "bulb/light_bulb = rocket/American_innovation",
     "119": "@dome/Washington,_D.C. = star/the_capital",
@@ -601,7 +604,7 @@
     "121": "#13 flag/stripes = #13 map/original_colonies",
     "122": "#50 stars/stars = #50 map/states",
     "123": "music/national_anthem = flag/Star-Spangled_Banner",
-    "125": "sparkles/Independence_Day #July_4 → link-off/free_from_Britain",
+    "125": "sparkles/Independence_Day #July_4 → link-off/free_from ^gb/Britain",
     "126": "sparkles/Independence_Day + tools-kitchen-2/Thanksgiving + flower/Memorial_Day",
     "127": "flower/Memorial_Day honors those_who_died_in_service",
     "128": "medal/Veterans_Day honors users-group/all_who_served",
@@ -613,7 +616,7 @@
     "6": "list-check/Bill_of_Rights protects shield-check/everyone's_rights",
     "7": "script/Constitution + #27 pencil-plus/amendments",
     "8": "file-certificate/Declaration says users-group/all_people = equal/created_equal",
-    "9": "file-certificate/Declaration = link-off/free_from_Britain",
+    "9": "file-certificate/Declaration = link-off/free_from ^gb/Britain",
     "10": "link-off/liberty + equal/equality",
     "12": "building-store/free_market = coin/capitalism",
     "13": "ruler-2/rule of gavel/law = crown-off/no_one_above_it",
@@ -673,6 +676,20 @@
   /* Hub: facts whose answer is the same person, learned as one set. */
   var HUB = { "17": "The President", "41": "The President", "42": "The President", "43": "The President", "45": "The President" };
 
+  var FLAGS = {
+    us: '<rect y="0.000" width="30" height="2.907" fill="#B22234"/><rect y="2.857" width="30" height="2.907" fill="#fff"/><rect y="5.714" width="30" height="2.907" fill="#B22234"/><rect y="8.571" width="30" height="2.907" fill="#fff"/><rect y="11.429" width="30" height="2.907" fill="#B22234"/><rect y="14.286" width="30" height="2.907" fill="#fff"/><rect y="17.143" width="30" height="2.907" fill="#B22234"/><rect width="13" height="11.43" fill="#3C3B6E"/><circle cx="2.2" cy="2.2" r=".55" fill="#fff"/><circle cx="2.2" cy="4.6" r=".55" fill="#fff"/><circle cx="2.2" cy="7.0" r=".55" fill="#fff"/><circle cx="2.2" cy="9.4" r=".55" fill="#fff"/><circle cx="5.1" cy="2.2" r=".55" fill="#fff"/><circle cx="5.1" cy="4.6" r=".55" fill="#fff"/><circle cx="5.1" cy="7.0" r=".55" fill="#fff"/><circle cx="5.1" cy="9.4" r=".55" fill="#fff"/><circle cx="8.0" cy="2.2" r=".55" fill="#fff"/><circle cx="8.0" cy="4.6" r=".55" fill="#fff"/><circle cx="8.0" cy="7.0" r=".55" fill="#fff"/><circle cx="8.0" cy="9.4" r=".55" fill="#fff"/><circle cx="10.9" cy="2.2" r=".55" fill="#fff"/><circle cx="10.9" cy="4.6" r=".55" fill="#fff"/><circle cx="10.9" cy="7.0" r=".55" fill="#fff"/><circle cx="10.9" cy="9.4" r=".55" fill="#fff"/>',
+    gb: '<rect width="30" height="20" fill="#012169"/><path d="M0 0L30 20M30 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L30 20M30 0L0 20" stroke="#C8102E" stroke-width="1.3"/><rect x="12.5" width="5" height="20" fill="#fff"/><rect y="7.5" width="30" height="5" fill="#fff"/><rect x="13.5" width="3" height="20" fill="#C8102E"/><rect y="8.5" width="30" height="3" fill="#C8102E"/>',
+    fr: '<rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/>',
+    de: '<rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#DD0000"/><rect y="13.33" width="30" height="6.67" fill="#FFCE00"/>',
+    jp: '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
+    kr: '<rect width="30" height="20" fill="#fff"/><path d="M10 10A5 5 0 0 1 20 10Z" fill="#CD2E3A"/><path d="M10 10A5 5 0 0 0 20 10Z" fill="#0047A0"/><circle cx="12.5" cy="10" r="2.5" fill="#CD2E3A"/><circle cx="17.5" cy="10" r="2.5" fill="#0047A0"/><g transform="translate(5.5 4.5) rotate(-33)"><rect x="-2.2" y="-1.4" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="-0.3" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="0.8" width="4.4" height=".7" fill="#000"/></g><g transform="translate(24.5 4.5) rotate(33)"><rect x="-2.2" y="-1.4" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="-0.3" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="0.8" width="4.4" height=".7" fill="#000"/></g><g transform="translate(5.5 15.5) rotate(33)"><rect x="-2.2" y="-1.4" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="-0.3" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="0.8" width="4.4" height=".7" fill="#000"/></g><g transform="translate(24.5 15.5) rotate(-33)"><rect x="-2.2" y="-1.4" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="-0.3" width="4.4" height=".7" fill="#000"/><rect x="-2.2" y="0.8" width="4.4" height=".7" fill="#000"/></g>',
+    vn: '<rect width="30" height="20" fill="#DA251D"/><polygon points="15.00,4.60 16.35,8.75 20.71,8.75 17.18,11.31 18.53,15.45 15.00,12.89 11.47,15.45 12.82,11.31 9.29,8.75 13.65,8.75" fill="#FFFF00"/>',
+    su: '<rect width="30" height="20" fill="#CC0000"/><polygon points="6.00,2.10 6.29,3.00 7.24,3.00 6.47,3.55 6.76,4.45 6.00,3.90 5.24,4.45 5.53,3.55 4.76,3.00 5.71,3.00" fill="#FFD700"/><path d="M4.2 8.6A3 3 0 1 0 8.4 7.3" fill="none" stroke="#FFD700" stroke-width=".9"/><path d="M4.4 11.6L8.2 7.4" stroke="#FFD700" stroke-width="1"/>',
+    iq: '<rect width="30" height="6.67" fill="#CE1126"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#000"/><polygon points="9.00,8.00 9.45,9.38 10.90,9.38 9.73,10.24 10.18,11.62 9.00,10.76 7.82,11.62 8.27,10.24 7.10,9.38 8.55,9.38" fill="#007A3D"/><polygon points="15.00,8.00 15.45,9.38 16.90,9.38 15.73,10.24 16.18,11.62 15.00,10.76 13.82,11.62 14.27,10.24 13.10,9.38 14.55,9.38" fill="#007A3D"/><polygon points="21.00,8.00 21.45,9.38 22.90,9.38 21.73,10.24 22.18,11.62 21.00,10.76 19.82,11.62 20.27,10.24 19.10,9.38 20.55,9.38" fill="#007A3D"/>',
+    kw: '<rect width="30" height="6.67" fill="#007A3D"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#CE1126"/><polygon points="0,0 8,6.67 8,13.33 0,20" fill="#000"/>',
+    af: '<rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#D32011"/><rect x="20" width="10" height="20" fill="#007A36"/><circle cx="15" cy="10" r="3" fill="none" stroke="#fff" stroke-width=".9"/>'
+  };
+
   var CUSTOM = {
     dome: '<path d="M3 21h18M5 21v-6M9.5 21v-6M14.5 21v-6M19 21v-6M4 15h16M6 15a6 6 0 0 1 12 0M12 9V4M12 4h3"/>',
     cabinet: '<rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M5 9h14M5 15h14M10.5 6h3M10.5 12h3M10.5 18h3"/>',
@@ -681,6 +698,12 @@
 
   function rebusVisual(spec, lyric) {
     var parts = spec.split(" ").map(function(tok) {
+      if (tok === "|") return '<span class="tok-br"></span>';
+      if (tok.charAt(0) === "[") return '<span class="tok-k">' + esc(tok.slice(1, -1).replace(/_/g, " ")) + '</span>';
+      if (tok.charAt(0) === "^") {
+        var fs = tok.indexOf("/"), code = tok.slice(1, fs > 0 ? fs : undefined), fcap = fs > 0 ? tok.slice(fs + 1).replace(/_/g, " ") : "";
+        return '<span class="tok-i"><svg class="flag" viewBox="0 0 30 20" width="54" height="36" aria-hidden="true">' + FLAGS[code] + '<rect width="30" height="20" fill="none" stroke="#000" stroke-width="1.2"/></svg>' + (fcap ? '<span class="cap">' + esc(fcap) + '</span>' : '') + '</span>';
+      }
       if (tok.charAt(0) === "#") return '<span class="tok-n">' + esc(tok.slice(1).replace(/_/g, " ")) + '</span>';
       var slash = tok.indexOf("/");
       if (tok.charAt(0) === "!") {
@@ -699,9 +722,12 @@
     });
     /* Keep connecting words and numbers attached to the icon that follows, so a row never wraps with a stray "+" or "=". */
     var groups = [], cur = [];
-    parts.forEach(function(h) { cur.push(h); if (h.indexOf('tok-i') > -1) { groups.push(cur); cur = []; } });
+    parts.forEach(function(h) {
+      if (h.indexOf('tok-br') > -1) { if (cur.length) groups.push(cur); groups.push(h); cur = []; return; }
+      cur.push(h); if (h.indexOf('tok-i') > -1) { groups.push(cur); cur = []; }
+    });
     if (cur.length) groups.push(cur);
-    return '<div class="rebus">' + groups.map(function(g) { return '<span class="tok-group">' + g.join("") + '</span>'; }).join("") + '</div>' +
+    return '<div class="rebus">' + groups.map(function(g) { return typeof g === "string" ? g : '<span class="tok-group">' + g.join("") + '</span>'; }).join("") + '</div>' +
       (lyric ? '<div class="lyric">' + esc(lyric) + '</div>' : '');
   }
 
