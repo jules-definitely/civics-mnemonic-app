@@ -24,7 +24,7 @@ Each card has a row of icons that spells out the answer.
 
 ## Try it
 
-**[Open the app](https://jules-definitely.github.io/civics-mnemonic-app/)**, or open `civics_book_prototype.html` in a browser. Start from the
+**[Open the app](https://juliaweikel.fyi/civics-app/)**, or open `civics_book_prototype.html` in a browser. Start from the
 cover page, pick a chapter, and read.
 
 ## Project structure
