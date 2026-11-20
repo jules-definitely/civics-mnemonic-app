@@ -102,6 +102,9 @@
   .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .legend .sq { width: 12px; height: 12px; }
+  .hint { font-size: 14px !important; color: var(--muted) !important; margin: 12px 0 0 !important; max-width: 26em; }
+  .hint.nudge { color: var(--red-text) !important; font-weight: 600; }
+  .btn-quiet.is-empty { border-style: dashed; }
   .tracker-tip { font-size: 13px; color: var(--muted); margin: 0; }
   .mode-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--red); color: var(--white); border-radius: 32px; padding: 8px 14px; font-size: 15px; font-weight: 600; white-space: nowrap; }
   .tool-pair { display: inline-flex; align-items: center; gap: 16px; }
@@ -861,7 +864,7 @@
       var pctKnown = Math.round(knownN / all.length * 100);
       var squares = all.map(function(f) {
         var st = state.dismissed[f.id] ? ' known' : (state.flagged[f.id] ? ' flag' : '');
-        var lbl = (state.dismissed[f.id] ? 'Known: ' : state.flagged[f.id] ? 'Needs practice: ' : 'Still learning: ') + f.statement;
+        var lbl = (state.dismissed[f.id] ? 'Known: ' : state.flagged[f.id] ? 'In practice list: ' : 'Still learning: ') + f.statement;
         return '<button class="sq' + st + '" data-id="' + esc(f.id) + '" aria-label="' + esc(lbl) + '" title="' + esc(f.statement) + '"></button>';
       }).join("");
       var chapters = CATEGORY_ORDER.map(function(cat) {
@@ -878,19 +881,24 @@
           '<p class="eyebrow">2025 U.S. Civics Test</p>' +
           '<h1>Learn the citizenship test as facts, not questions.</h1>' +
           '<p>All 128 questions from the 2025 civics test, taught as ' + facts.filter(function(f) { return !MERGED_INTO[f.id]; }).length + ' facts, one per page. Each comes with a row of icons that spell out the answer, so you can test yourself from the pictures alone.</p>' +
-          '<div class="actions"><button class="btn btn-primary" id="cvb-open">' + (knownN || flagN ? 'Keep learning' : 'Learn all ' + all.length + ' facts') + '</button>' +
-          (flagN ? '<button class="btn btn-quiet" id="cvb-practice">Practice flagged (' + flagN + ')</button>' : '') +
-          '</div></section>' +
+          '<div class="actions"><button class="btn btn-primary" id="cvb-open">Study all ' + all.length + ' facts</button>' +
+          '<button class="btn btn-quiet' + (flagN ? '' : ' is-empty') + '" id="cvb-practice" aria-describedby="cvb-hint">Practice list (' + flagN + ')</button>' +
+          '</div>' +
+          (flagN ? '' : '<p class="hint" id="cvb-hint">Add any card to your practice list to set it aside for extra focus.</p>') +
+          '</section>' +
         '<section class="tracker" aria-label="Your progress">' +
           '<div class="tracker-head"><b>' + knownN + ' of ' + all.length + ' known</b><span>' + pctKnown + '%</span></div>' +
           '<div class="grid">' + squares + '</div>' +
-          '<p class="legend"><span><i class="sq"></i>Still learning</span><span><i class="sq known"></i>Known</span><span><i class="sq flag"></i>Needs practice</span></p>' +
+          '<p class="legend"><span><i class="sq"></i>Still learning</span><span><i class="sq known"></i>Known</span><span><i class="sq flag"></i>In practice list</span></p>' +
           (dismissedCount ? '<button class="link" id="cvb-manage">See what you\'ve marked as known</button>' : '<p class="tracker-tip">Tap any square to jump to that fact.</p>') +
         '</section>' +
         '<nav class="chapters" aria-label="Topics"><h2>Or study by topic</h2>' + chapters + '</nav>' +
         '<p class="fine">A study aid only. Not affiliated with USCIS and not legal advice. Officeholders change, so check current names before your interview.</p>';
       on("cvb-open", function() { openBook(); });
-      on("cvb-practice", function() { openBook(null, "practice"); });
+      on("cvb-practice", function() {
+        if (flagN) { openBook(null, "practice"); return; }
+        var h = document.getElementById("cvb-hint"); if (h) { h.classList.remove("nudge"); void h.offsetWidth; h.classList.add("nudge"); }
+      });
       Array.prototype.forEach.call(root.querySelectorAll(".grid .sq"), function(el) {
         el.onclick = function() { openFact(el.getAttribute("data-id")); };
       });
@@ -944,7 +952,7 @@
     var pct = Math.round((state.pageIndex + 1) / state.pages.length * 100);
     var html = '<header class="bar">' +
         '<button class="link" id="cvb-cover">Home</button>' +
-        (state.mode === "practice" ? '<span class="mode-pill"><i class="ti ti-flag" aria-hidden="true"></i>Practicing flagged</span>' :
+        (state.mode === "practice" ? '<span class="mode-pill"><i class="ti ti-flag" aria-hidden="true"></i>Practice list</span>' :
         '<select id="cvb-jump" class="chapter-select" aria-label="Topic">' +
           CATEGORY_ORDER.map(function(c) { return '<option value="' + esc(c) + '"' + (c === fact.category ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") +
         '</select>') +
@@ -960,7 +968,7 @@
         '</div></article>' +
       '<div class="tools">' +
         '<button class="switch-btn" id="cvb-cover-toggle" role="switch" aria-checked="' + (state.coverOn ? 'true' : 'false') + '"><span class="switch" aria-hidden="true"></span>Hide the fact</button>' +
-        '<span class="tool-pair"><button class="flag-btn" id="cvb-flag" aria-pressed="' + (state.flagged[fact.id] ? 'true' : 'false') + '"><i class="ti ti-flag" aria-hidden="true"></i>Needs practice</button>' +
+        '<span class="tool-pair"><button class="flag-btn" id="cvb-flag" aria-pressed="' + (state.flagged[fact.id] ? 'true' : 'false') + '"><i class="ti ti-flag" aria-hidden="true"></i>' + (state.flagged[fact.id] ? 'In practice list' : 'Add to practice') + '</button>' +
         '<button class="link" id="cvb-dismiss">I know this</button></span></div>' +
       '<div class="nav">' +
         '<button class="btn btn-quiet" id="cvb-prev"' + (state.pageIndex === 0 ? ' disabled' : '') + '>Previous</button>' +
