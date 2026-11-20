@@ -70,7 +70,8 @@
   .fact { font-family: var(--display); font-weight: 500; font-size: clamp(25px, 6.4vw, 31px); line-height: 1.18; letter-spacing: -0.015em; margin: 0; transition: filter .35s ease, opacity .35s ease; }
   .say { margin: 14px 0 0; font-size: 15px; color: var(--mist); }
   .say strong { color: var(--ink); font-weight: 600; }
-  .verify { margin: 14px 0 0; font-size: 13px; font-weight: 500; display: inline-block; background: var(--petal); border-radius: 999px; padding: 5px 12px; }
+  .verify { margin: 14px 0 0; font-size: 13px; font-weight: 500; line-height: 1.4; background: var(--petal); border-radius: 14px; padding: 8px 12px; }
+  .ast { color: var(--cobalt); font-weight: 600; margin-left: 1px; }
   .is-hidden .fact, .is-hidden .say, .is-hidden .verify { filter: blur(11px); opacity: .55; user-select: none; }
   .reveal { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -40%); background: var(--ink); color: var(--white); border: 0; border-radius: 999px; padding: 13px 24px; font-weight: 600; font-size: 15px; white-space: nowrap; }
 
@@ -690,7 +691,12 @@
     return ICONS[name] ? ICONS[name]() : "";
   }
 
-  var TIME_SENSITIVE = { "30": true, "38": true, "39": true, "57": true };
+  var TIME_SENSITIVE = {
+    "30": "Expected to change on January 3, 2027, when the new Congress meets. Check before your interview.",
+    "38": "Officeholders change. Check this is still current before your interview.",
+    "39": "Officeholders change. Check this is still current before your interview.",
+    "57": "Officeholders change. Check this is still current before your interview."
+  };
 
   function techniqueVisual(fact) {
     if (REBUS[fact.id]) return '<div class="metaphor">' + rebusVisual(REBUS[fact.id], fact.lyric) + '</div>';
@@ -840,8 +846,8 @@
         '<div class="cue-visual">' + techniqueVisual(fact) + '</div>' +
         '<div class="cue-body' + (hidden ? ' is-hidden' : '') + '">' + groupLabel +
           '<p class="fact"' + (hidden ? ' aria-hidden="true"' : '') + '>' + esc(fact.statement) + '</p>' +
-          (fact.answer && fact.answer !== fact.statement ? '<p class="say"' + (hidden ? ' aria-hidden="true"' : '') + '>Say: <strong>' + esc(fact.answer) + '</strong></p>' : '') +
-          (TIME_SENSITIVE[fact.id] ? '<p class="verify"' + (hidden ? ' aria-hidden="true"' : '') + '>Check this is still current before your interview</p>' : '') +
+          (fact.answer && fact.answer !== fact.statement ? '<p class="say"' + (hidden ? ' aria-hidden="true"' : '') + '>Say: <strong>' + esc(fact.answer) + (TIME_SENSITIVE[fact.id] ? '<span class="ast" aria-label="see note">*</span>' : '') + '</strong></p>' : '') +
+          (TIME_SENSITIVE[fact.id] ? '<p class="verify"' + (hidden ? ' aria-hidden="true"' : '') + '><span class="ast" aria-hidden="true">*</span> ' + esc(TIME_SENSITIVE[fact.id]) + '</p>' : '') +
           (hidden ? '<button class="reveal" id="cvb-reveal">Tap to reveal</button>' : '') +
         '</div></article>' +
       '<div class="tools">' +
