@@ -31,7 +31,7 @@ Facts that look random often have a common denominator. George Washington, for e
 Every fact comes with a short row of icons, and every icon stands for a word in the answer. Think of a rebus. If the fact were *the cow jumped over the moon*, the icons would be a cow, a jump, and a moon, with the cow above the moon. You could rebuild the sentence from the pictures alone. A picture that only names the topic ("this one's about government") doesn't help you remember anything.
 
 **5. Study like cue cards.**
-Each card shows the icon row and the full fact together. Once a card feels familiar, a toggle hides the fact and leaves only the icons. Say the fact out loud from the clues, then tap to check. Cards you know cold can be set aside, and a simple day-streak encourages coming back.
+Each card shows the icon row and the full fact. A Fact | Question switch turns it into a rehearsal: the card shows the officer's actual question, the icons stay as clues, and any number or name that is the answer stays hidden until you tap "Show the answer." Learn as facts, rehearse the way the interview asks. Cards you know cold can be set aside, ones that aren't sticking go on a practice list, and a simple day-streak encourages coming back.
 
 ## Guardrails
 

@@ -33,7 +33,7 @@ flowchart LR
   D --> E[Group<br/>by person or by shape]
   E --> F[Pick technique<br/>by fact type]
   F --> G[Rebus icons<br/>each icon = a word]
-  G --> H[Cue card<br/>hide · recall · check]
+  G --> H[Cue card<br/>fact or question mode]
 ```
 
 | Stage | Rule | Why |
@@ -44,7 +44,7 @@ flowchart LR
 | **Group** | *By person:* familiar figures as hubs, no limit on size. *By shape:* easily confused facts side by side, max 3–4. | New facts stick to things you already know, and confusable facts are clearer next to each other. The cap keeps cards from overloading. |
 | **Technique** | A decision table maps the type of fact to a device: number badge, contrast pair, pun, timeline, metaphor or plain icon. | Not every fact deserves a gimmick. A forced pun is noise. |
 | **Rebus** | Every icon stands for a word in the answer. The test: can you rebuild the fact from the icons alone? | Icons that only name the topic don't help memory. |
-| **Cue card** | The fact is shown with its icon row. Toggle the text off, recall from the icons, tap to check, retire what you know. | Self-testing is there when you want it, not forced on you. |
+| **Cue card** | Fact mode shows the fact with its icon row. Question mode shows the official interview question with the icons as clues; any number or name that is the answer stays hidden until "Show the answer." | Learn as facts, rehearse the way the interview asks. |
 
 ## One fact, start to finish
 
@@ -56,7 +56,7 @@ flowchart LR
 4. **Group:** "Congress by the Numbers," paired with 435 House members, two numbers about the same institution.
 5. **Technique:** number badge, because the fact hinges on a number.
 6. **Rebus:** **2** 🪑 × **50** 🗺 = **100**. Two seats, fifty states. The icons *derive* the answer, so you don't have to memorize it raw.
-7. **Cue card:** hide the text, see "2 seats × 50 states," say "100 senators," then tap to check.
+7. **Cue card:** in Question mode the officer asks "How many U.S. senators are there?" and the icons read "2 seats × 50 states = ?". Answer, then tap "Show the answer."
 
 ## Designed for trust
 
@@ -83,7 +83,7 @@ An error on a citizenship test isn't cosmetic, so trust was built into the data 
 If this were taken further, these are the signals I'd use to judge whether the system works:
 
 - **Return:** do people come back on their own, on 3 or more separate days before their interview?
-- **Hook strength:** which facts keep getting re-revealed? Those hooks are weak and would be reworked first.
+- **Hook strength:** which facts keep needing "Show the answer"? Those hooks are weak and would be reworked first.
 - **Rebus test:** with the text hidden, can someone new to the material say the fact from the icons?
 - **Accuracy:** zero errors against the official list, and time-sensitive answers updated within a week of any change.
 
